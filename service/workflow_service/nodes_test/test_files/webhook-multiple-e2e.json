@@ -1,0 +1,114 @@
+{
+  "name": "New Webhook API",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "9f426bcf-c0bd-4982-a2cc-35ef6e49511d",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "36add5cb-0f3d-407d-82d9-c13135f56717",
+      "name": "Webhook",
+      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        420,
+        200
+      ],
+      "webhookId": "9f426bcf-c0bd-4982-a2cc-35ef6e49511d",
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: JSON.parse($input.first().json.body)\n  }\n]"
+      },
+      "id": "5abfc18b-8a2b-483d-b1fe-8ed66f6b35b5",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        300
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "43c65088-d9d9-402d-95c7-85f86000676e",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        840,
+        320
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "0802568a-c16a-4a86-8d3d-2d95d2c8928b",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e20cec2e-af59-4f43-a38f-72c0dc9be0de",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        460
+      ],
+      "webhookId": "0802568a-c16a-4a86-8d3d-2d95d2c8928b",
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "a6b964d0-a129-4251-9370-a71ea9c0b6aa",
+  "sugerOrgId": "w43Vc6UfM",
+  "id": "e7715dd7-4bfa-4367-a88b-d1704be9800d"
+}

@@ -1,0 +1,241 @@
+{
+  "codex": {
+    "categories": ["Core Nodes", "Utility"],
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/"
+        }
+      ]
+    },
+    "subcategories": {
+      "Core Nodes": ["Helpers"]
+    }
+  },
+  "credentials": [],
+  "defaults": {
+    "name": "Respond to Webhook"
+  },
+  "description": "Returns data for Webhook",
+  "displayName": "Respond to Webhook",
+  "group": ["transform"],
+  "iconUrl": "/icons/embed/n8n-nodes-base.respondToWebhook/webhook.svg",
+  "inputs": ["main"],
+  "name": "n8n-nodes-base.respondToWebhook",
+  "outputs": ["main"],
+  "properties": [
+    {
+      "default": "",
+      "displayName": "Verify that the \"Webhook\" node's \"Respond\" parameter is set to \"Using Respond to Webhook Node\". \u003ca href=\"https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/\" target=\"_blank\"\u003eMore details",
+      "name": "generalNotice",
+      "type": "notice"
+    },
+    {
+      "default": "firstIncomingItem",
+      "description": "The data that should be returned",
+      "displayName": "Respond With",
+      "name": "respondWith",
+      "options": [
+        {
+          "description": "Respond with all input JSON items",
+          "name": "All Incoming Items",
+          "value": "allIncomingItems"
+        },
+        {
+          "description": "Respond with incoming file binary data",
+          "name": "Binary File",
+          "value": "binary"
+        },
+        {
+          "description": "Respond with the first input JSON item",
+          "name": "First Incoming Item",
+          "value": "firstIncomingItem"
+        },
+        {
+          "description": "Respond with a custom JSON body",
+          "name": "JSON",
+          "value": "json"
+        },
+        {
+          "description": "Respond with an empty body",
+          "name": "No Data",
+          "value": "noData"
+        },
+        {
+          "description": "Respond with a redirect to a given URL",
+          "name": "Redirect",
+          "value": "redirect"
+        },
+        {
+          "description": "Respond with a simple text message body",
+          "name": "Text",
+          "value": "text"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "",
+      "displayName": "When using expressions, note that this node will only run for the first item in the input data",
+      "displayOptions": {
+        "show": {
+          "respondWith": ["json", "text"]
+        }
+      },
+      "name": "webhookNotice",
+      "type": "notice"
+    },
+    {
+      "default": "",
+      "description": "The URL to redirect to",
+      "displayName": "Redirect URL",
+      "displayOptions": {
+        "show": {
+          "respondWith": ["redirect"]
+        }
+      },
+      "name": "redirectURL",
+      "placeholder": "e.g. http://www.n8n.io",
+      "required": true,
+      "type": "string",
+      "validateType": "url"
+    },
+    {
+      "default": "{\n  \"myField\": \"value\"\n}",
+      "description": "The HTTP response JSON data",
+      "displayName": "Response Body",
+      "displayOptions": {
+        "show": {
+          "respondWith": ["json"]
+        }
+      },
+      "name": "responseBody",
+      "type": "json",
+      "typeOptions": {
+        "editor": "json",
+        "editorLanguage": "json",
+        "rows": 4
+      }
+    },
+    {
+      "default": "",
+      "description": "The HTTP response text data",
+      "displayName": "Response Body",
+      "displayOptions": {
+        "show": {
+          "respondWith": ["text"]
+        }
+      },
+      "name": "responseBody",
+      "placeholder": "e.g. Workflow completed",
+      "type": "string",
+      "typeOptions": {
+        "rows": 2
+      }
+    },
+    {
+      "default": "automatically",
+      "displayName": "Response Data Source",
+      "displayOptions": {
+        "show": {
+          "respondWith": ["binary"]
+        }
+      },
+      "name": "responseDataSource",
+      "options": [
+        {
+          "description": "Use if input data will contain a single piece of binary data",
+          "name": "Choose Automatically From Input",
+          "value": "automatically"
+        },
+        {
+          "description": "Enter the name of the input field the binary data will be in",
+          "name": "Specify Myself",
+          "value": "set"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "data",
+      "description": "The name of the node input field with the binary data",
+      "displayName": "Input Field Name",
+      "displayOptions": {
+        "show": {
+          "respondWith": ["binary"],
+          "responseDataSource": ["set"]
+        }
+      },
+      "name": "inputFieldName",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "default": {},
+      "displayName": "Options",
+      "name": "options",
+      "options": [
+        {
+          "default": 200,
+          "description": "The HTTP response code to return. Defaults to 200.",
+          "displayName": "Response Code",
+          "name": "responseCode",
+          "type": "number",
+          "typeOptions": {
+            "maxValue": 599,
+            "minValue": 100
+          }
+        },
+        {
+          "default": {},
+          "description": "Add headers to the webhook response",
+          "displayName": "Response Headers",
+          "name": "responseHeaders",
+          "options": [
+            {
+              "displayName": "Entries",
+              "name": "entries",
+              "values": [
+                {
+                  "default": "",
+                  "description": "Name of the header",
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "default": "",
+                  "description": "Value of the header",
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string"
+                }
+              ]
+            }
+          ],
+          "placeholder": "Add Response Header",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          }
+        },
+        {
+          "default": "",
+          "description": "The name of the response field to put all items in",
+          "displayName": "Put Response in Field",
+          "displayOptions": {
+            "show": {
+              "/respondWith": ["allIncomingItems", "firstIncomingItem"]
+            }
+          },
+          "name": "responseKey",
+          "placeholder": "e.g. data",
+          "type": "string"
+        }
+      ],
+      "placeholder": "Add Option",
+      "type": "collection"
+    }
+  ],
+  "version": 1
+}

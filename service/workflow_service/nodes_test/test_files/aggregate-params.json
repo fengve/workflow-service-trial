@@ -1,0 +1,14 @@
+{
+  "parameters": {
+    "aggregate": "aggregateAllItemData",
+    "include": "specifiedFields",
+    "fieldsToInclude": "name, count",
+    "options": {}
+  },
+  "id": "b5699f7f-c6ed-49a3-abd7-640b175df5d0",
+  "name": "Aggregate",
+  "type": "n8n-nodes-base.aggregate",
+  "typeVersion": 1,
+  "position": [620, 260],
+  "sugerOrgId": "w43Vc6UfM"
+}

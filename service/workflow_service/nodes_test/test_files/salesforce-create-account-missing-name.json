@@ -1,0 +1,9 @@
+{
+  "parameters": {
+    "additionalFields": {
+      "industry": "Technology",
+      "website": "https://suger.io"
+    },
+    "resource": "account"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "parameters": {
+    "dataType": "dateTime",
+    "value1": "={{ $json.date }}",
+    "rules": {
+      "rules": [
+        {
+          "operation": "before",
+          "value2": "2024-03-23T00:00:00",
+          "outputKey": "11"
+        },
+        {
+          "value2": "2024-04-01T00:00:00",
+          "outputKey": "fallback"
+        }
+      ]
+    },
+    "fallbackOutput": 1
+  },
+  "id": "27c7ba13-be45-499a-9128-34c6fad6b686",
+  "name": "Switch",
+  "type": "n8n-nodes-base.switch",
+  "typeVersion": 2,
+  "position": [700, 480]
+}

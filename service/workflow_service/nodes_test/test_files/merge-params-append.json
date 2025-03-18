@@ -1,0 +1,9 @@
+{
+  "parameters": {},
+  "id": "5af40043-3733-476d-ab6c-693734a8fa9e",
+  "name": "Merge",
+  "type": "n8n-nodes-base.merge",
+  "typeVersion": 2.1,
+  "position": [1200, 420],
+  "sugerOrgId": "w43Vc6UfM"
+}

@@ -1,0 +1,170 @@
+{
+  "name": "If & Filter",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7a2b757b-b9f1-4c6d-afec-2c1057e5ee5d",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [560, 380],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "// generate items input\nconst items = [\n  {\n    \"code\":1,\n    \"data\":\"First Item\",\n    \"ext\":true,\n  },\n  {\n    \"code\":2,\n    \"data\":\"Second Item\",\n    \"ext\":true\n  },\n  {\n    \"code\":3,\n    \"data\":\"Third Item\",\n    \"ext\":true\n  },\n  {\n    \"code\":4,\n    \"data\":\"Third Item\",\n  }\n]\n \n\nreturn items;"
+      },
+      "id": "41ee4927-dcde-44a1-bafd-10e5fa92a7a2",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [780, 380],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "30028041-459a-429f-9d79-dcfa9adf641a",
+              "leftValue": "={{ $json.code }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            },
+            {
+              "id": "5d1950d2-1b24-45a3-b5cd-2022ebccc4c7",
+              "leftValue": "={{ $json.ext }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e73efbbd-c796-46d0-ba6f-c53bd612aefc",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1000, 380],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "87eaa21f-9f65-4470-a3bb-876f029f5db2",
+              "leftValue": "={{ $json.ext }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "89226b3e-de16-4533-b24f-fc750763c06e",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [1420, 360],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'ext' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.ext = true;\n}\n\nreturn $input.all();"
+      },
+      "id": "daff4dbd-1d12-4ea7-8819-a5976aaf30a2",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1200, 500],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "0774eeb8-b0d5-4d6b-b079-a5eac5e840e0",
+  "sugerOrgId": "w43Vc6UfM",
+  "id": "oc7gXTBi0EPAjFWz"
+}

@@ -1,0 +1,46 @@
+{
+  "name": "Suger Event Notification Trigger Test",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c0f5f9bf-b777-4965-a324-17523c24ae8f",
+      "name": "Suger Notification Event Trigger",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.sugerNotificationEventTrigger",
+      "position": [680, 200],
+      "webhookId": "b3d73a8a-daf2-4bd5-9449-3855a3332675",
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: $input.first().json\n  }\n]"
+      },
+      "id": "ebe65a89-e6ca-4953-8d1e-d8164c6a96c7",
+      "name": "Code",
+      "typeVersion": 2,
+      "type": "n8n-nodes-base.code",
+      "position": [980, 200],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Suger Notification Event Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": []
+}

@@ -1,0 +1,354 @@
+{
+  "activationMessage": "You can now make calls to your production Form URL.",
+  "codex": {
+    "alias": [
+      "_Form",
+      "form",
+      "table",
+      "submit",
+      "post"
+    ],
+    "categories": [
+      "Core Nodes"
+    ],
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.formtrigger/"
+        }
+      ]
+    },
+    "subcategories": {
+      "Core Nodes": [
+        "Other Trigger Nodes"
+      ]
+    }
+  },
+  "defaultVersion": 2,
+  "defaults": {
+    "name": "n8n Form Trigger"
+  },
+  "description": "Runs the flow when an n8n generated webform is submitted",
+  "displayName": "n8n Form Trigger",
+  "eventTriggerDescription": "Waiting for you to submit the form",
+  "group": [
+    "trigger"
+  ],
+  "iconUrl": "icons/n8n-nodes-base/dist/nodes/Form/form.svg",
+  "inputs": [],
+  "name": "n8n-nodes-base.formTrigger",
+  "outputs": [
+    "main"
+  ],
+  "properties": [
+    {
+      "default": "",
+      "description": "The final segment of the form's URL, both for test and production",
+      "displayName": "Form Path",
+      "name": "path",
+      "placeholder": "webhook",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "default": "",
+      "description": "Shown at the top of the form",
+      "displayName": "Form Title",
+      "name": "formTitle",
+      "placeholder": "e.g. Contact us",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "default": "",
+      "description": "Shown underneath the Form Title. Can be used to prompt the user on how to complete the form.",
+      "displayName": "Form Description",
+      "name": "formDescription",
+      "placeholder": "e.g. We'll get back to you soon",
+      "type": "string"
+    },
+    {
+      "default": {
+        "values": [
+          {
+            "fieldType": "text",
+            "label": ""
+          }
+        ]
+      },
+      "displayName": "Form Fields",
+      "name": "formFields",
+      "options": [
+        {
+          "displayName": "Values",
+          "name": "values",
+          "values": [
+            {
+              "default": "",
+              "description": "Label appears above the input field",
+              "displayName": "Field Label",
+              "name": "fieldLabel",
+              "placeholder": "e.g. What is your name?",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "default": "text",
+              "description": "The type of field to add to the form",
+              "displayName": "Field Type",
+              "name": "fieldType",
+              "options": [
+                {
+                  "name": "Date",
+                  "value": "date"
+                },
+                {
+                  "name": "Dropdown List",
+                  "value": "dropdown"
+                },
+                {
+                  "name": "Number",
+                  "value": "number"
+                },
+                {
+                  "name": "Password",
+                  "value": "password"
+                },
+                {
+                  "name": "Text",
+                  "value": "text"
+                },
+                {
+                  "name": "Textarea",
+                  "value": "textarea"
+                }
+              ],
+              "required": true,
+              "type": "options"
+            },
+            {
+              "default": {
+                "values": [
+                  {
+                    "option": ""
+                  }
+                ]
+              },
+              "description": "List of options that can be selected from the dropdown",
+              "displayName": "Field Options",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "dropdown"
+                  ]
+                }
+              },
+              "name": "fieldOptions",
+              "options": [
+                {
+                  "displayName": "Values",
+                  "name": "values",
+                  "values": [
+                    {
+                      "default": "",
+                      "displayName": "Option",
+                      "name": "option",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ],
+              "placeholder": "Add Field Option",
+              "required": true,
+              "type": "fixedCollection",
+              "typeOptions": {
+                "multipleValues": true,
+                "sortable": true
+              }
+            },
+            {
+              "default": false,
+              "description": "Whether to allow the user to select multiple options from the dropdown list",
+              "displayName": "Multiple Choice",
+              "displayOptions": {
+                "show": {
+                  "fieldType": [
+                    "dropdown"
+                  ]
+                }
+              },
+              "name": "multiselect",
+              "type": "boolean"
+            },
+            {
+              "default": false,
+              "description": "Whether to require the user to enter a value for this field before submitting the form",
+              "displayName": "Required Field",
+              "name": "requiredField",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "placeholder": "Add Form Field",
+      "type": "fixedCollection",
+      "typeOptions": {
+        "multipleValues": true,
+        "sortable": true
+      }
+    },
+    {
+      "default": "onReceived",
+      "description": "When to respond to the form submission",
+      "displayName": "Respond When",
+      "name": "responseMode",
+      "options": [
+        {
+          "description": "As soon as this node receives the form submission",
+          "name": "Form Is Submitted",
+          "value": "onReceived"
+        },
+        {
+          "description": "When the last node of the workflow is executed",
+          "name": "Workflow Finishes",
+          "value": "lastNode"
+        },
+        {
+          "description": "When the 'Respond to Webhook' node is executed",
+          "name": "Using 'Respond to Webhook' Node",
+          "value": "responseNode"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "",
+      "displayName": "In the 'Respond to Webhook' node, select 'Respond With JSON' and set the \u003cstrong\u003eformSubmittedText\u003c/strong\u003e key to display a custom response in the form, or the \u003cstrong\u003eredirectURL\u003c/strong\u003e key to redirect users to a URL",
+      "displayOptions": {
+        "show": {
+          "responseMode": [
+            "responseNode"
+          ]
+        }
+      },
+      "name": "formNotice",
+      "type": "notice"
+    },
+    {
+      "default": {},
+      "displayName": "Options",
+      "displayOptions": {
+        "hide": {
+          "responseMode": [
+            "responseNode"
+          ]
+        }
+      },
+      "name": "options",
+      "options": [
+        {
+          "default": {
+            "values": {
+              "respondWith": "text"
+            }
+          },
+          "displayName": "Form Response",
+          "name": "respondWithOptions",
+          "options": [
+            {
+              "displayName": "Values",
+              "name": "values",
+              "values": [
+                {
+                  "default": "text",
+                  "displayName": "Respond With",
+                  "name": "respondWith",
+                  "options": [
+                    {
+                      "description": "Show a response text to the user",
+                      "name": "Form Submitted Text",
+                      "value": "text"
+                    },
+                    {
+                      "description": "Redirect the user to a URL",
+                      "name": "Redirect URL",
+                      "value": "redirect"
+                    }
+                  ],
+                  "type": "options"
+                },
+                {
+                  "default": "Your response has been recorded",
+                  "description": "The text displayed to users after they fill the form. Leave it empty if don't want to show any additional text.",
+                  "displayName": "Text to Show",
+                  "displayOptions": {
+                    "show": {
+                      "respondWith": [
+                        "text"
+                      ]
+                    }
+                  },
+                  "name": "formSubmittedText",
+                  "type": "string"
+                },
+                {
+                  "default": "",
+                  "description": "The URL to redirect users to after they fill the form. Must be a valid URL.",
+                  "displayName": "URL to Redirect to",
+                  "displayOptions": {
+                    "show": {
+                      "respondWith": [
+                        "redirect"
+                      ]
+                    }
+                  },
+                  "name": "redirectUrl",
+                  "placeholder": "e.g. http://www.n8n.io",
+                  "type": "string",
+                  "validateType": "url"
+                }
+              ]
+            }
+          ],
+          "placeholder": "Add Option",
+          "type": "fixedCollection"
+        }
+      ],
+      "placeholder": "Add Option",
+      "type": "collection"
+    }
+  ],
+  "triggerPanel": {
+    "activationHint": {
+      "active": "This node will also trigger automatically on new form submissions (but those executions won't show up here).",
+      "inactive": "\u003ca data-key=\"activate\"\u003eActivate\u003c/a\u003e this workflow to have it also run automatically for new form submissions created via the Production URL."
+    },
+    "executionsHelp": {
+      "active": "Form Trigger has two modes: test and production. \u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse test mode while you build your workflow\u003c/b\u003e. Click the 'Test Step' button, then fill out the test form that opens in a popup tab. The executions will show up in the editor.\u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse production mode to run your workflow automatically\u003c/b\u003e. \u003ca data-key=\"activate\"\u003eActivate\u003c/a\u003e the workflow, then make requests to the production URL. Then every time there's a form submission via the Production Form URL, the workflow will execute. These executions will show up in the executions list, but not in the editor.",
+      "inactive": "Form Trigger has two modes: test and production. \u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse test mode while you build your workflow\u003c/b\u003e. Click the 'Test Step' button, then fill out the test form that opens in a popup tab. The executions will show up in the editor.\u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse production mode to run your workflow automatically\u003c/b\u003e. \u003ca data-key=\"activate\"\u003eActivate\u003c/a\u003e the workflow, then make requests to the production URL. Then every time there's a form submission via the Production Form URL, the workflow will execute. These executions will show up in the executions list, but not in the editor."
+    },
+    "header": "Pull in a test form submission"
+  },
+  "version": 2,
+  "webhooks": [
+    {
+      "httpMethod": "GET",
+      "isForm": true,
+      "isFullPath": true,
+      "name": "setup",
+      "ndvHideUrl": true,
+      "path": "={{$parameter[\"path\"]}}",
+      "responseMode": "onReceived"
+    },
+    {
+      "httpMethod": "POST",
+      "isForm": true,
+      "isFullPath": true,
+      "name": "default",
+      "ndvHideMethod": true,
+      "path": "={{$parameter[\"path\"]}}",
+      "responseData": "={{$parameter[\"responseMode\"] === \"lastNode\" ? \"noData\" : undefined}}",
+      "responseMode": "={{$parameter[\"responseMode\"]}}"
+    }
+  ]
+}

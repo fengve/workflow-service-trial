@@ -1,0 +1,105 @@
+{
+  "eventID": "a1156fcb-0ed9-444b-ba76-fc8b7349ad51",
+  "organizationID": "w43Vc6UfM",
+  "partner": "AWS",
+  "action": "UPDATE",
+  "entityType": "ENTITLEMENT",
+  "entityID": "WYQRdII-M",
+  "entityName": "Test Private Offer",
+  "entityStatus": "ACTIVE",
+  "message": "Entitlement is updated with AutoRenew",
+  "info": {
+    "buyerID": "vj1RKII-p",
+    "creationTime": "2024-06-18T15:15:26.481127Z",
+    "endTime": "2026-01-01T23:59:59.999Z",
+    "entitlementTermID": "WY1RdUU-Mp",
+    "externalBuyerID": "",
+    "externalID": "agmt-82ymr0i02alud84cf8g0d6l4d",
+    "externalProductID": "b52c5bm0lcfrwsr9ggp54cg2s",
+    "id": "WYQRdII-M",
+    "info": {
+      "commitAmount": 15000,
+      "commits": [
+        {
+          "category": "Units",
+          "description": "Custom Contract (See attached document with details)",
+          "key": "CustomContractAttach",
+          "length": 18,
+          "name": "Custom Contract (See attached documents)",
+          "quantity": 1,
+          "timeUnit": "MONTH",
+          "types": [
+            "Entitled"
+          ]
+        }
+      ],
+      "currency": "USD",
+      "dimensions": [
+        {
+          "category": "Units",
+          "description": "Additional usage fees",
+          "key": "revenue_unit",
+          "name": "Additional usage fees",
+          "rate": 150,
+          "types": [
+            "ExternallyMetered"
+          ]
+        },
+        {
+          "category": "Units",
+          "description": "free",
+          "key": "free_unit",
+          "name": "free",
+          "rate": 0,
+          "types": [
+            "ExternallyMetered"
+          ]
+        }
+      ],
+      "paymentInstallments": [
+        {
+          "amount": 15000,
+          "chargeOn": "2024-07-01T00:00:00Z"
+        }
+      ]
+    },
+    "lastUpdateTime": "2024-06-18T15:15:26.481127Z",
+    "metaInfo": {},
+    "name": "Test Private Offer",
+    "offerID": "keQ40eI-M",
+    "organizationID": "w43Vc6UfM",
+    "partner": "AWS",
+    "productID": "uD4BR9VfM",
+    "service": "MARKETPLACE",
+    "startTime": "2024-07-01T00:00:00Z",
+    "status": "ACTIVE",
+    "type": "CONTRACT"
+  },
+  "timestamp": "2024-06-18T15:15:36.563717096Z",
+  "priority": "HIGH",
+  "requireAudit": true,
+  "channels": [
+    "EMAIL",
+    "SLACK",
+    "SNS",
+    "WEBHOOK"
+  ],
+  "customFields": {
+    "awsAccountId": "767397695101",
+    "awsCustomerId": "",
+    "buyerId": "vj1RKII-p",
+    "buyerName": "aws--767397695101",
+    "entitlementId": "WYQRdII-M",
+    "entitlementName": "Test Private Offer",
+    "entitlementType": "CONTRACT",
+    "externalEntitlementId": "agmt-82ymr0i02alud84cf8g0d6l4d",
+    "externalId": "agmt-82ymr0i02alud84cf8g0d6l4d",
+    "externalOfferId": "offer-brqr6gt26reqw",
+    "externalProductId": "b52c5bm0lcfrwsr9ggp54cg2s",
+    "offerId": "keQ40eI-M",
+    "offerName": "Test Private Offer",
+    "offerType": "CONTRACT",
+    "productId": "uD4BR9VfM",
+    "productName": "Suger Cloud Marketplace Platform"
+  }
+}

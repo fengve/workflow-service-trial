@@ -1,0 +1,189 @@
+{
+    "name": "Google Bigquery Test",
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "f2b5636f-6697-4c97-ac94-6ee866deb95a",
+        "name": "When clicking \"Execute Workflow\"",
+        "typeVersion": 1,
+        "type": "n8n-nodes-base.manualTrigger",
+        "position": [
+          680,
+          220
+        ],
+        "sugerOrgId": "w43Vc6UfM"
+      },
+      {
+        "parameters": {
+          "projectId": {
+            "__rl": true,
+            "cachedResultName": "suger-stag",
+            "mode": "list",
+            "value": "suger-stag"
+          },
+          "sqlQuery": "SELECT * FROM `suger-stag.suger_stag_bigquery_test.simple-test-table` WHERE Name = \"test001\" LIMIT 20",
+          "options": {}
+        },
+        "id": "8cce05ef-f696-4f5e-9d2b-0854387e4f28",
+        "name": "Google BigQuery",
+        "typeVersion": 2,
+        "type": "n8n-nodes-base.googleBigQuery",
+        "position": [
+          1480,
+          220
+        ],
+        "sugerOrgId": "w43Vc6UfM"
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "projectId": {
+            "__rl": true,
+            "cachedResultName": "suger-stag",
+            "mode": "list",
+            "value": "suger-stag"
+          },
+          "datasetId": {
+            "__rl": true,
+            "cachedResultName": "suger_stag_bigquery_test",
+            "mode": "list",
+            "value": "suger_stag_bigquery_test"
+          },
+          "tableId": {
+            "__rl": true,
+            "cachedResultName": "simple-test-table",
+            "mode": "list",
+            "value": "simple-test-table"
+          },
+          "options": {}
+        },
+        "id": "8c1653ee-4f26-43f1-a5cd-4f732b121d43",
+        "name": "Google BigQuery1",
+        "typeVersion": 2,
+        "type": "n8n-nodes-base.googleBigQuery",
+        "position": [
+          1080,
+          220
+        ],
+        "sugerOrgId": "w43Vc6UfM"
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  {\n    Name: \"test001\",\n    Count: 1,\n    Size: 1.1\n  },\n  {\n    Name: \"test002\",\n    Count: 2,\n    Size: 1.2\n  }\n];"
+        },
+        "id": "da71ab13-8268-4e45-85a8-753389bbdf29",
+        "name": "Code",
+        "typeVersion": 2,
+        "type": "n8n-nodes-base.code",
+        "position": [
+          880,
+          220
+        ],
+        "sugerOrgId": "w43Vc6UfM"
+      },
+      {
+        "parameters": {
+          "operation": "insert",
+          "projectId": {
+            "__rl": true,
+            "value": "suger-stag",
+            "mode": "list",
+            "cachedResultName": "suger-stag"
+          },
+          "datasetId": {
+            "__rl": true,
+            "value": "suger_stag_bigquery_test",
+            "mode": "list",
+            "cachedResultName": "suger_stag_bigquery_test"
+          },
+          "tableId": {
+            "__rl": true,
+            "value": "simple-test-table",
+            "mode": "list",
+            "cachedResultName": "simple-test-table"
+          },
+          "dataMode": "define",
+          "fieldsUi": {
+            "values": [
+              {
+                "fieldId": "Name",
+                "fieldValue": "test001"
+              },
+              {
+                "fieldId": "Count",
+                "fieldValue": "2"
+              },
+              {
+                "fieldId": "Size",
+                "fieldValue": "0.01"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "99aed4cd-5826-48df-bf47-725bf8f9124e",
+        "name": "Google BigQuery2",
+        "type": "n8n-nodes-base.googleBigQuery",
+        "typeVersion": 2,
+        "position": [
+          1280,
+          220
+        ],
+        "sugerOrgId": "w43Vc6UfM"
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "Code": {
+        "main": [
+          [
+            {
+              "node": "Google BigQuery1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google BigQuery1": {
+        "main": [
+          [
+            {
+              "node": "Google BigQuery2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When clicking \"Execute Workflow\"": {
+        "main": [
+          [
+            {
+              "node": "Code",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google BigQuery2": {
+        "main": [
+          [
+            {
+              "node": "Google BigQuery",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1",
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    "tags": [],
+    "sugerOrgId": "w43Vc6UfM"
+  }

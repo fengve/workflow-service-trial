@@ -1,0 +1,101 @@
+{
+  "id": "fec32227-8063-4359-bf0a-b33799c60675",
+  "name": "New Workflow",
+  "active": false,
+  "connections": {
+    "Execute Command": {
+      "main": [
+        [
+          {
+            "node": "Execute Command1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "9ce2812f-4076-49f5-a226-4fa2e119128b",
+      "name": "When clicking \"Execute Workflow\"",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        640,
+        560
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "6c2febec-ddef-4ca3-b154-44f51caa6841",
+      "name": "Execute Command",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        960,
+        560
+      ],
+      "parameters": {
+        "command": "echo \"first\""
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "f731ffb0-2eda-471a-9975-d36767f3ef6c",
+      "name": "Execute Command1",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        1240,
+        560
+      ],
+      "parameters": {
+        "command": "echo \"second\""
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "bd99c3c2-380a-49be-bfc4-e19d6e7c85a2",
+      "name": "Merge",
+      "typeVersion": 2.1,
+      "type": "n8n-nodes-base.merge",
+      "position": [
+        1520,
+        540
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "versionId": "3d240e46-1ff1-458e-8b6b-c76c9fb3eee7",
+  "createdAt": "2024-06-12T06:18:14.043Z",
+  "updatedAt": "2024-06-12T06:21:38.283Z",
+  "sugerOrgId": "w43Vc6UfM"
+}

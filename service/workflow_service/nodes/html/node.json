@@ -1,0 +1,305 @@
+{
+  "codex": {
+    "alias": ["extract", "template", "table"],
+    "categories": ["Core Nodes"],
+    "resources": {
+      "primaryDocumentation": []
+    },
+    "subcategories": {
+      "Core Nodes": ["Data Transformation"]
+    }
+  },
+  "defaults": {
+    "name": "HTML"
+  },
+  "description": "Work with HTML",
+  "displayName": "HTML",
+  "group": ["transform"],
+  "iconUrl": "/icons/embed/n8n-nodes-base.html/html.svg",
+  "inputs": ["main"],
+  "name": "n8n-nodes-base.html",
+  "outputs": ["main"],
+  "parameterPane": "wide",
+  "properties": [
+    {
+      "default": "generateHtmlTemplate",
+      "displayName": "Operation",
+      "name": "operation",
+      "noDataExpression": true,
+      "options": [
+        {
+          "action": "Generate HTML template",
+          "name": "Generate HTML Template",
+          "value": "generateHtmlTemplate"
+        },
+        {
+          "action": "Extract HTML Content",
+          "name": "Extract HTML Content",
+          "value": "extractHtmlContent"
+        },
+        {
+          "action": "Convert to HTML Table",
+          "name": "Convert to HTML Table",
+          "value": "convertToHtmlTable"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "\u003c!DOCTYPE html\u003e\n\n\u003chtml\u003e\n\u003chead\u003e\n  \u003cmeta charset=\"UTF-8\" /\u003e\n  \u003ctitle\u003eMy HTML document\u003c/title\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n  \u003cdiv class=\"container\"\u003e\n    \u003ch1\u003eThis is an H1 heading\u003c/h1\u003e\n    \u003ch2\u003eThis is an H2 heading\u003c/h2\u003e\n    \u003cp\u003eThis is a paragraph\u003c/p\u003e\n  \u003c/div\u003e\n\u003c/body\u003e\n\u003c/html\u003e\n\n\u003cstyle\u003e\n.container {\n  background-color: #ffffff;\n  text-align: center;\n  padding: 16px;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #ff6d5a;\n  font-size: 24px;\n  font-weight: bold;\n  padding: 8px;\n}\n\nh2 {\n  color: #909399;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 8px;\n}\n\u003c/style\u003e\n\n\u003cscript\u003e\nconsole.log(\"Hello World!\");\n\u003c/script\u003e",
+      "description": "HTML template to render",
+      "displayName": "HTML Template",
+      "displayOptions": {
+        "show": {
+          "operation": ["generateHtmlTemplate"]
+        }
+      },
+      "name": "html",
+      "noDataExpression": true,
+      "type": "string",
+      "typeOptions": {
+        "editor": "htmlEditor"
+      }
+    },
+    {
+      "default": "",
+      "displayName": "\u003cb\u003eTips\u003c/b\u003e: Type ctrl+space for completions. Use \u003ccode\u003e{{ }}\u003c/code\u003e for expressions and \u003ccode\u003e\u0026lt;style\u0026gt;\u003c/code\u003e tags for CSS. JS in \u003ccode\u003e\u0026lt;script\u0026gt;\u003c/code\u003e tags is included but not executed in n8n.",
+      "displayOptions": {
+        "show": {
+          "operation": ["generateHtmlTemplate"]
+        }
+      },
+      "name": "notice",
+      "type": "notice"
+    },
+    {
+      "default": "json",
+      "description": "If HTML should be read from binary or JSON data",
+      "displayName": "Source Data",
+      "displayOptions": {
+        "show": {
+          "operation": ["extractHtmlContent"]
+        }
+      },
+      "name": "sourceData",
+      "options": [
+        {
+          "name": "Binary",
+          "value": "binary"
+        },
+        {
+          "name": "JSON",
+          "value": "json"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "data",
+      "description": "Name of the binary property in which the HTML to extract the data from can be found",
+      "displayName": "Binary Property",
+      "displayOptions": {
+        "show": {
+          "operation": ["extractHtmlContent"],
+          "sourceData": ["binary"]
+        }
+      },
+      "name": "dataPropertyName",
+      "required": true,
+      "requiresDataPath": "single",
+      "type": "string"
+    },
+    {
+      "default": "data",
+      "description": "Name of the JSON property in which the HTML to extract the data from can be found. The property can either contain a string or an array of strings.",
+      "displayName": "JSON Property",
+      "displayOptions": {
+        "show": {
+          "operation": ["extractHtmlContent"],
+          "sourceData": ["json"]
+        }
+      },
+      "name": "dataPropertyName",
+      "required": true,
+      "requiresDataPath": "single",
+      "type": "string"
+    },
+    {
+      "default": {},
+      "displayName": "Extraction Values",
+      "displayOptions": {
+        "show": {
+          "operation": ["extractHtmlContent"]
+        }
+      },
+      "name": "extractionValues",
+      "options": [
+        {
+          "displayName": "Values",
+          "name": "values",
+          "values": [
+            {
+              "default": "",
+              "description": "The key under which the extracted value should be saved",
+              "displayName": "Key",
+              "name": "key",
+              "type": "string"
+            },
+            {
+              "default": "",
+              "description": "The CSS selector to use",
+              "displayName": "CSS Selector",
+              "name": "cssSelector",
+              "placeholder": ".price",
+              "type": "string"
+            },
+            {
+              "default": "text",
+              "description": "What kind of data should be returned",
+              "displayName": "Return Value",
+              "name": "returnValue",
+              "options": [
+                {
+                  "description": "Get an attribute value like \"class\" from an element",
+                  "name": "Attribute",
+                  "value": "attribute"
+                },
+                {
+                  "description": "Get the HTML the element contains",
+                  "name": "HTML",
+                  "value": "html"
+                },
+                {
+                  "description": "Get only the text content of the element",
+                  "name": "Text",
+                  "value": "text"
+                },
+                {
+                  "description": "Get value of an input, select or textarea",
+                  "name": "Value",
+                  "value": "value"
+                }
+              ],
+              "type": "options"
+            },
+            {
+              "default": "",
+              "description": "The name of the attribute to return the value off",
+              "displayName": "Attribute",
+              "displayOptions": {
+                "show": {
+                  "returnValue": ["attribute"]
+                }
+              },
+              "name": "attribute",
+              "placeholder": "class",
+              "type": "string"
+            },
+            {
+              "default": false,
+              "description": "Whether to return the values as an array so if multiple ones get found they also get returned separately. If not set all will be returned as a single string.",
+              "displayName": "Return Array",
+              "name": "returnArray",
+              "type": "boolean"
+            }
+          ]
+        }
+      ],
+      "placeholder": "Add Value",
+      "type": "fixedCollection",
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "default": {},
+      "displayName": "Options",
+      "displayOptions": {
+        "show": {
+          "operation": ["extractHtmlContent"]
+        }
+      },
+      "name": "options",
+      "options": [
+        {
+          "default": true,
+          "description": "Whether to remove automatically all spaces and newlines from the beginning and end of the values",
+          "displayName": "Trim Values",
+          "name": "trimValues",
+          "type": "boolean"
+        }
+      ],
+      "placeholder": "Add Option",
+      "type": "collection"
+    },
+    {
+      "default": {},
+      "displayName": "Options",
+      "displayOptions": {
+        "show": {
+          "operation": ["convertToHtmlTable"]
+        }
+      },
+      "name": "options",
+      "options": [
+        {
+          "default": false,
+          "description": "Whether to capitalize the headers",
+          "displayName": "Capitalize Headers",
+          "name": "capitalize",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Whether to use custom styling",
+          "displayName": "Custom Styling",
+          "name": "customStyling",
+          "type": "boolean"
+        },
+        {
+          "default": "",
+          "description": "Caption to add to the table",
+          "displayName": "Caption",
+          "name": "caption",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "description": "Attributes to attach to the table",
+          "displayName": "Table Attributes",
+          "name": "tableAttributes",
+          "placeholder": "e.g. style=\"padding:10px\"",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "description": "Attributes to attach to the table header",
+          "displayName": "Header Attributes",
+          "name": "headerAttributes",
+          "placeholder": "e.g. style=\"padding:10px\"",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "description": "Attributes to attach to the table row",
+          "displayName": "Row Attributes",
+          "name": "rowAttributes",
+          "placeholder": "e.g. style=\"padding:10px\"",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "description": "Attributes to attach to the table cell",
+          "displayName": "Cell Attributes",
+          "name": "cellAttributes",
+          "placeholder": "e.g. style=\"padding:10px\"",
+          "type": "string"
+        }
+      ],
+      "placeholder": "Add Option",
+      "type": "collection"
+    }
+  ],
+  "subtitle": "={{ $parameter[\"operation\"] }}",
+  "version": 1
+}

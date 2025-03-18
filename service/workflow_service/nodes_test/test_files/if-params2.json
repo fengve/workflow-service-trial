@@ -1,0 +1,64 @@
+{
+  "parameters": {
+    "conditions": {
+      "options": {
+        "caseSensitive": false,
+        "leftValue": "",
+        "typeValidation": "loose"
+      },
+      "conditions": [
+        {
+          "id": "fa07ecbd-b2d3-40e2-86af-c7393e9ba876",
+          "leftValue": "={{ $json[\"id\"] }}",
+          "rightValue": 1,
+          "operator": {
+            "type": "number",
+            "operation": "equals"
+          }
+        },
+        {
+          "id": "f9da62f3-888e-41ab-92d9-7df6271e6196",
+          "leftValue": "={{ $json }}",
+          "rightValue": "=2",
+          "operator": {
+            "type": "object",
+            "operation": "exists",
+            "singleValue": true
+          }
+        },
+        {
+          "id": "81909fed-5645-44f9-aa24-b0bd478334cc",
+          "leftValue": "=2024-03-09",
+          "rightValue": "2024-03-09T00:00:00",
+          "operator": {
+            "type": "dateTime",
+            "operation": "equals"
+          }
+        },
+        {
+          "id": "63377046-968a-4f3e-b984-70a3b4c02e9f",
+          "leftValue": "={{ $json[\"data\"] }}",
+          "rightValue": "={{ $json[\"test\"] }}",
+          "operator": {
+            "type": "array",
+            "operation": "contains",
+            "rightType": "any"
+          }
+        }
+      ],
+      "combinator": "and"
+    },
+    "options": {
+      "ignoreCase": true,
+      "looseTypeValidation": true
+    }
+  },
+  "id": "ab8aecbc-ebaf-4a8a-8c98-06a67b19bb50",
+  "name": "If",
+  "type": "n8n-nodes-base.if",
+  "typeVersion": 2,
+  "position": [
+    920,
+    340
+  ]
+}

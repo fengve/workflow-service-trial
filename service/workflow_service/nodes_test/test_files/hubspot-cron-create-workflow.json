@@ -1,0 +1,103 @@
+{
+    "name": "Hubspot Cron Test",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "seconds",
+                            "secondsInterval": 2
+                        }
+                    ]
+                }
+            },
+            "id": "fcda695c-cdb9-4b82-9472-ff80964d80c3",
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                580,
+                180
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "operation": "getAll",
+                "returnAll": true,
+                "additionalFields": {
+                    "listMemberships": true,
+                    "propertiesCollection": {
+                        "propertiesValues": {
+                            "properties": [
+                                "company_size",
+                                "date_of_birth",
+                                "days_to_close",
+                                "degree",
+                                "field_of_study",
+                                "hs_date_entered_salesqualifiedlead",
+                                "hs_date_entered_subscriber"
+                            ]
+                        }
+                    }
+                }
+            },
+            "id": "f1c07f37-c232-49cf-a89a-a4def105fed9",
+            "name": "HubSpot",
+            "type": "n8n-nodes-base.hubspot",
+            "typeVersion": 2,
+            "position": [
+                800,
+                180
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+            },
+            "id": "f22717fb-0021-4cc8-be23-4b9b86cf329a",
+            "name": "Code",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1020,
+                180
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "HubSpot",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "HubSpot": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "Tecl_2yaM"
+    },
+    "tags": [],
+    "sugerOrgId": "Tecl_2yaM"
+}

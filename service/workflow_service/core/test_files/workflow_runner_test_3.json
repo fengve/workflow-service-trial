@@ -1,0 +1,95 @@
+{
+  "workflowData": {
+    "name": "Runner test3",
+    "nodes": [
+      {
+        "parameters": {
+          "command": "echo \"test\""
+        },
+        "id": "8715cbc3-83eb-47e5-9943-57ad7ce292d2",
+        "name": "Execute Command",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          760,
+          380
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "62c115ee-639d-499f-bceb-32cf805a540e",
+        "name": "Delete Execution",
+        "type": "n8n-nodes-base.deleteExecution",
+        "typeVersion": 1,
+        "position": [
+          1100,
+          340
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 1
+              },
+              {
+                "field": "seconds"
+              },
+              {
+                "field": "minutes",
+                "minutesInterval": 1
+              }
+            ]
+          }
+        },
+        "id": "cd7174ff-cab0-4f49-9f3c-af9daca882ec",
+        "name": "Schedule Trigger",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          460,
+          660
+        ]
+      }
+    ],
+    "pinData": {
+    },
+    "connections": {
+      "Execute Command": {
+        "main": [
+          [
+            {
+              "node": "Delete Execution",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Execute Command",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [
+    ],
+    "versionId": "9943d26e-301d-41bd-890d-9d5381fc41a8",
+    "id": "YHXuzUV1vj6Mno93"
+  },
+  "pinData": {
+  },
+  "startNodes": [
+  ]
+}

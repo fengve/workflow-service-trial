@@ -1,0 +1,84 @@
+{
+    "name": "Google Cloud Storage Test Workflow",
+    "nodes": [
+        {
+            "parameters": {},
+            "id": "398ca6f5-7b2e-497c-8928-170f85f565ed",
+            "name": "When clicking \"Execute Workflow\"",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.manualTrigger",
+            "position": [
+                540,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "resource": "object",
+                "operation": "get",
+                "bucketName": "suger-dev-bucket",
+                "objectName": "dummy.pdf",
+                "getParameters": {},
+                "encryptionHeaders": {}
+            },
+            "id": "945a13fc-98cd-414e-a9cd-c25b1f62ef30",
+            "name": "Google Cloud Storage",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.googleCloudStorage",
+            "position": [
+                760,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+            },
+            "id": "483b6324-34c0-4fb5-9743-e6b405e04631",
+            "name": "Code",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                980,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "When clicking \"Execute Workflow\"": {
+            "main": [
+                [
+                    {
+                        "node": "Google Cloud Storage",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Cloud Storage": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "Tecl_2yaM"
+    },
+    "tags": [],
+    "versionId": "db4bc989-98df-4fef-a62f-bd3f406cea1c",
+    "sugerOrgId": "Tecl_2yaM",
+    "id": "eea596bb-6701-4c80-83fb-f509336d2fa6"
+}

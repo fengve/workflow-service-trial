@@ -1,0 +1,89 @@
+{
+  "name": "Disable Node Test",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "id": "dbc52137-8ebb-4c4b-b215-1828284e2a3f",
+      "name": "Schedule Trigger",
+      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        280,
+        360
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "command": "echo \"tingyi\""
+      },
+      "id": "56c22c76-a42a-4b96-a3df-bb7cf187b0d0",
+      "name": "Execute Command",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        500,
+        360
+      ],
+      "disabled": true,
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "toEmail": "test@suger.io",
+        "subject": "test",
+        "emailFormat": "text",
+        "text": "={{ JSON.stringify($json) }}"
+      },
+      "id": "865b6b3c-5ca8-4d55-83ee-bec2f2971b87",
+      "name": "Suger Email",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.sugerEmail",
+      "position": [
+        780,
+        380
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Execute Command": {
+      "main": [
+        [
+          {
+            "node": "Suger Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "cc99fdc5-92eb-4396-809a-5a0208daad43",
+  "sugerOrgId": "w43Vc6UfM",
+  "id": "0da23a30-2f55-4124-b405-a4aa94ba2d31"
+}

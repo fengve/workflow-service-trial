@@ -1,0 +1,11 @@
+{
+  "rule": {
+    "interval": [
+      {
+        "field": "weeks",
+        "triggerAtDay": [],
+        "triggerAtMinute": 15
+      }
+    ]
+  }
+}

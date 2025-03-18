@@ -1,0 +1,7 @@
+{
+  "parameters": {
+    "contentVersionId": "<REPLACE AT RUNTIME>",
+    "operation": "get",
+    "resource": "document"
+  }
+}

@@ -1,0 +1,24 @@
+{
+    "id": "db40fa92-a8f4-4112-9459-50e5c161c7e3",
+    "name": "Suger Microsoft Teams",
+    "typeVersion": 1,
+    "type": "n8n-nodes-base.sugerMicrosoftTeams",
+    "position": [
+        700,
+        100
+    ],
+    "parameters": {
+        "channelId": {
+            "__rl": true,
+            "cachedResultName": "suger-notification-dev",
+            "mode": "list",
+            "value": "19:643562469ab74e1283308f25a24aa1b3@thread.tacv2"
+        },
+        "messageType": "text",
+        "operation": "post",
+        "resource": "message",
+        "select": "channel",
+        "text": "test simple plain text message."
+    },
+    "sugerOrgId": "w43Vc6UfM"
+}

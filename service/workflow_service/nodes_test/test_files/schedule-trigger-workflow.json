@@ -1,0 +1,60 @@
+{
+  "name": "Schedule Trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 2
+            }
+          ]
+        }
+      },
+      "id": "",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        420,
+        400
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {},
+      "id": "",
+      "name": "Delete Execution",
+      "type": "n8n-nodes-base.deleteExecution",
+      "typeVersion": 1,
+      "position": [
+        640,
+        400
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Delete Execution",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "",
+  "sugerOrgId": "w43Vc6UfM"
+}

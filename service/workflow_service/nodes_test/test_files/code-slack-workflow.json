@@ -1,0 +1,156 @@
+{
+  "id": "CiDQzZeHIVpQBhP1",
+  "name": "Offer Slack",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2c46c172-e4c1-4105-b27b-5d83927459a8",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [100, 320],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = {\n  \"eventID\": \"917de8ee-44ed-4774-b6de-7790116ed286\",\n  \"organizationID\": \"4EUCUVLtM\",\n  \"partner\": \"AWS\",\n  \"action\": \"CREATE\",\n  \"entityType\": \"OFFER\",\n  \"entityID\": \"RnAKLFh-p\",\n  \"entityName\": \"Sonicwall Suger Offer\",\n  \"entityStatus\": \"DRAFT\",\n  \"message\": \"New Private Offer is created\",\n  \"info\": {\n    \"contactIds\": [\"U30WL3h-M\"],\n    \"createdBy\": \"nEdD_VRaM\",\n    \"creationTime\": \"2024-02-23T23:40:11.453527Z\",\n    \"expireTime\": \"2024-02-29T00:00:00Z\",\n    \"externalID\": \"\",\n    \"id\": \"RnAKLFh-p\",\n    \"info\": {\n      \"buyerAwsAccountIds\": [\"866580784427\"],\n      \"commits\": [\n        {\n          \"category\": \"Units\",\n          \"description\": \"Platform MAUs\",\n          \"isUserCreated\": true,\n          \"key\": \"PLT\",\n          \"length\": 12,\n          \"name\": \"Platform MAUs\",\n          \"quantity\": 30,\n          \"timeUnit\": \"MONTH\"\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"Suger Protected Resources\",\n          \"isUserCreated\": true,\n          \"key\": \"PRT\",\n          \"length\": 12,\n          \"name\": \"Protected Rscs\",\n          \"quantity\": 10800,\n          \"timeUnit\": \"MONTH\"\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"Suger Identity Authorizations\",\n          \"isUserCreated\": true,\n          \"key\": \"IDT\",\n          \"length\": 12,\n          \"name\": \"Identity Auth\",\n          \"quantity\": 300000,\n          \"timeUnit\": \"MONTH\"\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"Identity Governance MAUs\",\n          \"isUserCreated\": true,\n          \"key\": \"IDG\",\n          \"length\": 12,\n          \"name\": \"Identity Gov\",\n          \"quantity\": 30,\n          \"timeUnit\": \"MONTH\"\n        }\n      ],\n      \"currency\": \"USD\",\n      \"dimensions\": [\n        {\n          \"category\": \"Units\",\n          \"description\": \"10 Server Access User (10 user minimum)\",\n          \"key\": \"A8763\",\n          \"name\": \"A8763\",\n          \"rate\": 432,\n          \"types\": [\"Entitled\"]\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"10 Kubernetes Access User (10 user minimum)\",\n          \"key\": \"A8757\",\n          \"name\": \"A8757\",\n          \"rate\": 432,\n          \"types\": [\"Entitled\"]\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"10 Application Access User (minimum 10 users)\",\n          \"key\": \"A8790\",\n          \"name\": \"A8790\",\n          \"rate\": 432,\n          \"types\": [\"Entitled\"]\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"10 Database Access User (minimum of 10 users)\",\n          \"key\": \"A8755\",\n          \"name\": \"A8755\",\n          \"rate\": 432,\n          \"types\": [\"Entitled\"]\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"10 Desktop Access User (minimum of 10 users)\",\n          \"key\": \"A8795\",\n          \"name\": \"A8795\",\n          \"rate\": 432,\n          \"types\": [\"Entitled\"]\n        },\n        {\n          \"category\": \"Units\",\n          \"description\": \"Minimum annual fee for all self host service\",\n          \"key\": \"self_host_annual\",\n          \"name\": \"self_host_annual\",\n          \"rate\": 25000,\n          \"types\": [\"Entitled\"]\n        },\n        {\n          \"key\": \"A8797\",\n          \"rate\": 936\n        }\n      ],\n      \"eulaType\": \"SCMP\",\n      \"paymentInstallments\": [\n        {\n          \"amount\": 28080,\n          \"chargeOn\": \"2024-04-30T00:00:00Z\"\n        }\n      ],\n      \"visibility\": \"PRIVATE\"\n    },\n    \"lastUpdateTime\": \"2024-02-23T23:40:11.468885Z\",\n    \"lastUpdatedBy\": \"nEdD_VRaM\",\n    \"metaInfo\": {},\n    \"name\": \"Sonicwall Suger Offer\",\n    \"offerType\": \"CONTRACT\",\n    \"organizationID\": \"4EUCUVLtM\",\n    \"partner\": \"AWS\",\n    \"productID\": \"rbfQgEyap\",\n    \"service\": \"MARKETPLACE\",\n    \"status\": \"DRAFT\"\n  },\n  \"timestamp\": \"2024-02-23T23:40:11.540958283Z\",\n  \"priority\": \"LOW\",\n  \"requireAudit\": true,\n  \"createdBy\": {\n    \"entityType\": \"USER\",\n    \"entityId\": \"nEdD_VRaM\",\n    \"name\": \"Phil Simpson\",\n    \"email\": \"phil.simpson@goSuger.com\"\n  },\n  \"customFields\": {\n    \"externalProductId\": \"75res3rkue0bxtyb5n1ar5bj1\",\n    \"productId\": \"rbfQgEyap\",\n    \"productName\": \"Suger Access Platform for AWS\"\n  }\n}\nreturn [data];"
+      },
+      "id": "2df34373-b005-425c-9389-a1e6a3d7cf77",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [280, 320],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "2d8eb398-e5ed-459b-af14-147030f8106a",
+              "leftValue": "={{ $json.entityType == \"OFFER\" }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "3944283b-74b2-493a-8251-f82458dcf488",
+              "leftValue": "={{ $json.action == \"CREATE\" || $json.action == \"ACCEPT\" || $json.action == \"EXPIRE\" }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c27ba583-ac63-46a7-bcdc-bee10f1156ea",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [460, 320],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Initialize an empty Slack message\nconst slackMessage = {\n  attachments: [],\n};\nconst blocks = [];\n\nlet notificationEvent;\n// If the input notification event is in string format, parse it as JSON object.\nif (typeof $input.first().json == \"string\") {\n  notificationEvent = JSON.parse($input.first().json);\n} else {\n  notificationEvent = $input.first().json;\n}\n\n// Add a header & context block to the message\nblocks.push({\n  type: \"header\",\n  text: {\n    type: \"plain_text\",\n    text: notificationEvent.action + \" \" + notificationEvent.entityType,\n  },\n});\nblocks.push({\n  type: \"context\",\n  elements: [\n    {\n      type: \"plain_text\",\n      text: notificationEvent.message,\n    },\n  ],\n});\n// Add the partner & product info as section blocks to the message.\nconst blockPartner = {\n  type: \"section\",\n  fields: [\n    {\n      type: \"mrkdwn\",\n      text: \"*Channel:* \\n\" + notificationEvent.partner,\n    },\n  ],\n};\n// Populate the client's AWS Account ID or GCP Billing Account ID if available.\nif (Object.hasOwn(notificationEvent, \"customFields\")) {\n  const awsAccountId = notificationEvent.customFields.AwsAccountId || notificationEvent.customFields.awsAccountId || \"\";\n  if (awsAccountId !== \"\") {\n    blockPartner.fields.push({\n      type: \"mrkdwn\",\n      text: \"*AWS Account ID:* \\n\" + awsAccountId,\n    });\n  }\n  const awsCustomerId = notificationEvent.customFields.awsCustomerId || \"\";\n  if (awsCustomerId !== \"\") {\n    blockPartner.fields.push({\n      type: \"mrkdwn\",\n      text: \"*AWS Customer ID:* \\n\" + awsCustomerId,\n    });\n  }\n  const gcpAccountId =\n    notificationEvent.customFields.gcpAccountId || notificationEvent.customFields.gcpBillingAccountId || \"\";\n  if (gcpAccountId !== \"\") {\n    blockPartner.fields.push({\n      type: \"mrkdwn\",\n      text: \"*GCP Billing Account ID:* \\n\" + gcpAccountId,\n    });\n  }\n  const azureAccountId = notificationEvent.customFields.azureBillingAccountId || \"\";\n  if (azureAccountId !== \"\") {\n    blockPartner.fields.push({\n      type: \"mrkdwn\",\n      text: \"*AZURE Billing Account ID:* \\n\" + azureAccountId,\n    });\n  }\n  const azureCustomerEmail = notificationEvent.customFields.azureCustomerEmail || \"\";\n  if (azureCustomerEmail !== \"\") {\n    blockPartner.fields.push({\n      type: \"mrkdwn\",\n      text: \"*AZURE Customer Email:* \\n\" + azureCustomerEmail,\n    });\n  }\n}\nblocks.push(blockPartner);\n\n// Add the product, offer & buyer info as the section block to the message.\nif (Object.hasOwn(notificationEvent, \"customFields\")) {\n  const blockProductOfferBuyer = {\n    type: \"section\",\n    fields: [],\n  };\n\n  const productName = notificationEvent.customFields.productName || \"\";\n  const productId = notificationEvent.customFields.productId || \"\";\n  if (productName !== \"\" && productId !== \"\") {\n    const productUrl = \"https://console.suger.io/product/\" + productId;\n    blockProductOfferBuyer.fields.push({\n      type: \"mrkdwn\",\n      text: \"*Product:* \\n<\" + productUrl + \"|\" + productName + \">\",\n    });\n  }\n\n  const offerName = notificationEvent.customFields.offerName || \"\";\n  const offerId = notificationEvent.customFields.offerId || \"\";\n  if (offerName !== \"\" && offerId !== \"\") {\n    const offerUrl = \"https://console.suger.io/offer/\" + offerId;\n    blockProductOfferBuyer.fields.push({\n      type: \"mrkdwn\",\n      text: \"*Offer:* \\n<\" + offerUrl + \"|\" + offerName + \">\",\n    });\n  }\n\n  const buyerName = notificationEvent.customFields.buyerName || \"\";\n  const buyerId = notificationEvent.customFields.buyerId || \"\";\n  if (buyerName !== \"\" && buyerId !== \"\") {\n    const buyerUrl = \"https://console.suger.io/buyer/\" + buyerId;\n    blockProductOfferBuyer.fields.push({\n      type: \"mrkdwn\",\n      text: \"*Buyer:* \\n<\" + buyerUrl + \"|\" + buyerName + \">\",\n    });\n  }\n\n  if (blockProductOfferBuyer.fields.length > 0) {\n    blocks.push(blockProductOfferBuyer);\n  }\n}\n\n// Add the offer info as the section block to the message.\nif (notificationEvent.entityType === \"OFFER\") {\n  const blockOffer = {\n    type: \"section\",\n    fields: [],\n  };\n  const offerName = notificationEvent.entityName || \"\";\n  const offerId = notificationEvent.entityID || \"\";\n  const offerUrl = \"https://console.suger.io/offer/\" + offerId;\n  blockOffer.fields.push({\n    type: \"mrkdwn\",\n    text: \"*Offer:* \\n<\" + offerUrl + \"|\" + offerName + \">\",\n  });\n  blockOffer.fields.push({\n    type: \"mrkdwn\",\n    text: \"*Offer ID:* \\n\" + offerId,\n  });\n  blockOffer.fields.push({\n    type: \"mrkdwn\",\n    text: \"*Offer Status:* \\n\" + (notificationEvent.entityStatus || \"\"),\n  });\n  blocks.push(blockOffer);\n}\n\n// Populate the createdBy info.\nif (Object.hasOwn(notificationEvent, \"createdBy\")) {\n  const blockCreatedBy = {\n    type: \"section\",\n    fields: [],\n  };\n\n  blockCreatedBy.fields.push({\n    type: \"mrkdwn\",\n    text:\n      \"*Created By:* \\n\" +\n      (notificationEvent.createdBy.name || \"N/A\") +\n      \"\\n\" +\n      (notificationEvent.createdBy.email || \"\"),\n  });\n  blocks.push(blockCreatedBy);\n}\n\nslackMessage.attachments.push({\n  color: \"#f2c744\",\n  blocks,\n});\n\n// return the slack message as the output.\nreturn [{ json: slackMessage }];"
+      },
+      "id": "f5588615-bd27-4d99-826e-703435dfe7c7",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 320],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "366d0a0c-69a3-4231-ab86-86ee34753159",
+      "name": "Suger Slack",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.sugerSlack",
+      "position": [1500, 220],
+      "parameters": {
+        "blocksUi": "={{ $json }}",
+        "channelId": {
+          "__rl": true,
+          "cachedResultName": "test-suger-slack-app-2",
+          "mode": "list",
+          "value": "C06UM6BSZ1V"
+        },
+        "messageType": "block"
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Suger Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "9a8d3e49-3031-4b5b-8401-6cce41ca9d41",
+  "triggerCount": 0,
+  "sugerOrgId": "",
+  "tags": [],
+  "createdAt": "2024-04-11T08:53:08.725Z",
+  "updatedAt": "2024-04-11T08:59:05.456Z"
+}

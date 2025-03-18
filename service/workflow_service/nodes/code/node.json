@@ -1,0 +1,164 @@
+{
+  "displayName": "Code",
+  "name": "n8n-nodes-base.code",
+  "iconUrl": "/icons/embed/n8n-nodes-base.code/code.svg",
+  "group": ["transform"],
+  "version": [1, 2],
+  "defaultVersion": 2,
+  "description": "Run custom JavaScript code",
+  "defaults": {
+    "name": "Code",
+    "color": "#FF9922"
+  },
+  "inputs": ["main"],
+  "outputs": ["main"],
+  "parameterPane": "wide",
+  "properties": [
+    {
+      "displayName": "Mode",
+      "name": "mode",
+      "type": "options",
+      "noDataExpression": true,
+      "options": [
+        {
+          "name": "Run Once for All Items",
+          "value": "runOnceForAllItems",
+          "description": "Run this code only once, no matter how many input items there are"
+        }
+      ],
+      "default": "runOnceForAllItems"
+    },
+    {
+      "displayName": "Language",
+      "name": "language",
+      "type": "options",
+      "noDataExpression": true,
+      "displayOptions": {
+        "show": {
+          "@version": [2]
+        }
+      },
+      "options": [
+        {
+          "name": "JavaScript",
+          "value": "javaScript"
+        }
+      ],
+      "default": "javaScript"
+    },
+    {
+      "displayName": "Language",
+      "name": "language",
+      "type": "hidden",
+      "displayOptions": {
+        "show": {
+          "@version": [1]
+        }
+      },
+      "default": "javaScript"
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript",
+        "rows": 5
+      },
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "noDataExpression": true,
+      "displayOptions": {
+        "show": {
+          "@version": [1],
+          "mode": ["runOnceForAllItems"]
+        }
+      }
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript",
+        "rows": 5
+      },
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "noDataExpression": true,
+      "displayOptions": {
+        "show": {
+          "@version": [1],
+          "mode": ["runOnceForEachItem"]
+        }
+      }
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript",
+        "rows": 5
+      },
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "noDataExpression": true,
+      "displayOptions": {
+        "show": {
+          "@version": [2],
+          "language": ["javaScript"],
+          "mode": ["runOnceForAllItems"]
+        }
+      }
+    },
+    {
+      "displayName": "JavaScript",
+      "name": "jsCode",
+      "type": "string",
+      "typeOptions": {
+        "editor": "codeNodeEditor",
+        "editorLanguage": "javaScript",
+        "rows": 5
+      },
+      "default": "",
+      "description": "JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href=\"https://docs.n8n.io/nodes/n8n-nodes-base.function\">Learn more</a>.",
+      "noDataExpression": true,
+      "displayOptions": {
+        "show": {
+          "@version": [2],
+          "language": ["javaScript"],
+          "mode": ["runOnceForEachItem"]
+        }
+      }
+    },
+    {
+      "displayName": "Type <code>$</code> for a list of <a target=\"_blank\" href=\"https://docs.n8n.io/code-examples/methods-variables-reference/\">special vars/methods</a>. Debug by using <code>console.log()</code> statements and viewing their output in the browser console.",
+      "name": "notice",
+      "type": "notice",
+      "displayOptions": {
+        "show": {
+          "language": ["javaScript"]
+        }
+      },
+      "default": ""
+    }
+  ],
+  "codex": {
+    "categories": ["Development", "Core Nodes"],
+    "subcategories": {
+      "Core Nodes": ["Helpers", "Data Transformation"]
+    },
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.code/"
+        }
+      ]
+    },
+    "alias": ["cpde", "Javascript", "JS", "Script", "Custom Code", "Function"]
+  }
+}

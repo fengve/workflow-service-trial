@@ -1,0 +1,18 @@
+{
+  "parameters": {
+    "channelId": {
+      "__rl": true,
+      "value": "C04N073650D",
+      "mode": "list",
+      "cachedResultName": "test-suger-slack-app"
+    },
+    "messageType": "block",
+    "blocksUi": "={\n\t\"blocks\": [\n\t\t{\n\t\t\t\"type\": \"section\",\n\t\t\t\"text\": {\n\t\t\t\t\"type\": \"mrkdwn\",\n\t\t\t\t\"text\": \"{{ $json.timestamp }} Hello, Assistant to the Regional Manager Dwight! *Michael Scott* wants to know where you'd like to take the Paper Company investors to dinner tonight.\\n\\n *Please select a restaurant:*\"\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"type\": \"divider\"\n\t\t}\n   ]\n}"
+  },
+  "id": "d0f14956-e1bd-4053-94d0-dd34794e154f",
+  "name": "Suger Slack",
+  "type": "n8n-nodes-base.sugerSlack",
+  "typeVersion": 1,
+  "position": [940, 220],
+  "sugerOrgId": "w43Vc6UfM"
+}

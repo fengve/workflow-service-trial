@@ -1,0 +1,28 @@
+{
+  "parameters": {
+    "value1": "={{ $json.id }}",
+    "rules": {
+      "rules": [
+        {
+          "operation": "smallerEqual",
+          "value2": 1,
+          "outputKey": "11"
+        },
+        {
+          "operation": "larger",
+          "outputKey": "22"
+        },
+        {
+          "operation": "equal",
+          "value2": 3,
+          "outputKey": "33"
+        }
+      ]
+    }
+  },
+  "id": "27c7ba13-be45-499a-9128-34c6fad6b686",
+  "name": "Switch",
+  "type": "n8n-nodes-base.switch",
+  "typeVersion": 2,
+  "position": [700, 480]
+}

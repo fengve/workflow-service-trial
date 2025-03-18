@@ -1,0 +1,11 @@
+{
+  "parameters": {
+    "accountId": "<REPLACE AT RUNTIME>",
+    "operation": "update",
+    "resource": "account",
+    "updateFields": {
+      "annualRevenue": 1000,
+      "name": "UPDATED"
+    }
+  }
+}

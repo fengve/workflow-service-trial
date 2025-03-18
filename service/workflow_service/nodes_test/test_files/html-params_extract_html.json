@@ -1,0 +1,31 @@
+{
+  "parameters": {
+    "operation": "extractHtmlContent",
+    "dataPropertyName": "={{ [\"html\"] }}",
+    "extractionValues": {
+      "values": [
+        {
+          "key": "title",
+          "cssSelector": "title"
+        },
+        {
+          "key": "first",
+          "cssSelector": "div.container>p:first-of-type"
+        },
+        {
+          "key": "list",
+          "cssSelector": "p",
+          "returnArray": true
+        }
+      ]
+    },
+    "options": {
+      "trimValues": true
+    }
+  },
+  "id": "836daecb-194a-4eaf-a3af-eee8f3245b36",
+  "name": "HTML1",
+  "type": "n8n-nodes-base.html",
+  "typeVersion": 1,
+  "position": [1480, 220]
+}

@@ -1,0 +1,314 @@
+[
+  {
+    "startData": "1",
+    "resultData": "2",
+    "executionData": "3"
+  },
+  {},
+  {
+    "runData": "4",
+    "lastNodeExecuted": "5"
+  },
+  {
+    "contextData": "6",
+    "nodeExecutionStack": "7",
+    "waitingExecution": "8"
+  },
+  {
+    "Suger Notification Event Trigger": "9",
+    "If": "10",
+    "Code": "11",
+    "Suger Slack": "12"
+  },
+  "Suger Slack",
+  {},
+  [],
+  {},
+  ["13"],
+  ["14"],
+  ["15"],
+  ["16"],
+  {
+    "startTime": 1712774367390,
+    "executionTime": 0,
+    "source": "17",
+    "executionStatus": "18",
+    "data": "19"
+  },
+  {
+    "startTime": 1712774367390,
+    "executionTime": 2,
+    "source": "20",
+    "executionStatus": "18",
+    "data": "21"
+  },
+  {
+    "startTime": 1712774367393,
+    "executionTime": 29,
+    "source": "22",
+    "executionStatus": "18",
+    "data": "23"
+  },
+  {
+    "startTime": 1712774367423,
+    "executionTime": 233,
+    "source": "24",
+    "executionStatus": "18",
+    "data": "25"
+  },
+  [],
+  "success",
+  {
+    "main": "26"
+  },
+  ["27"],
+  {
+    "main": "28"
+  },
+  ["29"],
+  {
+    "main": "30"
+  },
+  ["31"],
+  {
+    "main": "32"
+  },
+  ["33"],
+  {
+    "previousNode": "34"
+  },
+  ["35", "36"],
+  {
+    "previousNode": "37"
+  },
+  ["38"],
+  {
+    "previousNode": "39"
+  },
+  ["40"],
+  ["41"],
+  "Suger Notification Event Trigger",
+  ["42"],
+  [],
+  "If",
+  ["43"],
+  "Code",
+  ["44"],
+  {
+    "json": "45",
+    "pairedItem": "46"
+  },
+  {
+    "json": "45",
+    "pairedItem": "47"
+  },
+  {
+    "json": "48",
+    "pairedItem": "49"
+  },
+  {
+    "json": "50",
+    "pairedItem": "51"
+  },
+  "{\"eventID\":\"d1b44839-d29d-4610-84dd-c15097df65b5\",\"organizationID\":\"w43Vc6UfM\",\"partner\":\"GCP\",\"action\":\"OPEN_EMAIL\",\"entityType\":\"OFFER\",\"entityID\":\"ckByxz7-p\",\"entityName\":\"test postpay gcp private offer by Chengjun v3\",\"entityStatus\":\"PENDING_ACCEPTANCE\",\"message\":\"Notification email is opened\",\"timestamp\":\"2024-04-10T18:39:25.113594232Z\",\"contactIds\":[\"FEdf5wO-M\"],\"priority\":\"HIGH\",\"requireAudit\":true,\"createdBy\":{\"entityType\":\"CONTACT\",\"entityId\":\"FEdf5wO-M\",\"name\":\"Kyle Lohmann\",\"email\":\"support@suger.io\"},\"customFields\":{\"externalId\":\"7f970b9b-b764-409f-83ca-e540794efc09\",\"externalOfferId\":\"7f970b9b-b764-409f-83ca-e540794efc09\",\"externalProductId\":\"suger-cloud-gtm-platform\",\"offerId\":\"ckByxz7-p\",\"offerName\":\"test postpay gcp private offer by Chengjun v3\",\"offerType\":\"FIXED_FEE_WITH_OVERAGE\",\"productId\":\"-zA_avczp\",\"productName\":\"Suger Cloud GTM Platform\"}}",
+  {
+    "item": 0
+  },
+  {
+    "item": 0
+  },
+  {
+    "attachments": "52"
+  },
+  {
+    "item": 0
+  },
+  {
+    "ok": true,
+    "channel": "53",
+    "ts": "54",
+    "message": "55",
+    "warning": "56",
+    "response_metadata": "57"
+  },
+  {
+    "item": 0
+  },
+  ["58"],
+  "C04N073650D",
+  "1712774367.595919",
+  {
+    "user": "59",
+    "type": "60",
+    "ts": "54",
+    "bot_id": "61",
+    "app_id": "62",
+    "text": "63",
+    "team": "64",
+    "bot_profile": "65",
+    "attachments": "66"
+  },
+  "missing_charset",
+  {
+    "warnings": "67"
+  },
+  {
+    "color": "68",
+    "blocks": "69"
+  },
+  "U04MVQC22DU",
+  "message",
+  "B04NF1ZT3DX",
+  "A04M8JZ8U9M",
+  "",
+  "T034G4C9M8C",
+  {
+    "id": "61",
+    "app_id": "62",
+    "name": "70",
+    "icons": "71",
+    "deleted": false,
+    "updated": 1675493409,
+    "team_id": "64"
+  },
+  ["72"],
+  ["56"],
+  "#f2c744",
+  ["73", "74", "75", "76"],
+  "suger-dev",
+  {
+    "image_36": "77",
+    "image_48": "78",
+    "image_72": "79"
+  },
+  {
+    "id": 1,
+    "blocks": "80",
+    "color": "68",
+    "fallback": "81"
+  },
+  {
+    "type": "82",
+    "text": "83"
+  },
+  {
+    "type": "84",
+    "fields": "85"
+  },
+  {
+    "type": "84",
+    "fields": "86"
+  },
+  {
+    "type": "84",
+    "fields": "87"
+  },
+  "https://avatars.slack-edge.com/2023-02-01/4730788177558_6435633e937f5d897c1b_36.png",
+  "https://avatars.slack-edge.com/2023-02-01/4730788177558_6435633e937f5d897c1b_48.png",
+  "https://avatars.slack-edge.com/2023-02-01/4730788177558_6435633e937f5d897c1b_72.png",
+  ["88", "89", "90", "91"],
+  "[no preview available]",
+  "header",
+  {
+    "type": "92",
+    "text": "93"
+  },
+  "section",
+  ["94"],
+  ["95", "96"],
+  ["97", "98", "99"],
+  {
+    "type": "82",
+    "block_id": "100",
+    "text": "101"
+  },
+  {
+    "type": "84",
+    "block_id": "102",
+    "fields": "103"
+  },
+  {
+    "type": "84",
+    "block_id": "104",
+    "fields": "105"
+  },
+  {
+    "type": "84",
+    "block_id": "106",
+    "fields": "107"
+  },
+  "plain_text",
+  "OPEN_EMAIL OFFER",
+  {
+    "type": "108",
+    "text": "109"
+  },
+  {
+    "type": "108",
+    "text": "110"
+  },
+  {
+    "type": "108",
+    "text": "111"
+  },
+  {
+    "type": "108",
+    "text": "111"
+  },
+  {
+    "type": "108",
+    "text": "112"
+  },
+  {
+    "type": "108",
+    "text": "113"
+  },
+  "UKd4S",
+  {
+    "type": "92",
+    "text": "93",
+    "emoji": true
+  },
+  "whNAt",
+  ["114"],
+  "uF1SF",
+  ["115", "116"],
+  "x9Xyo",
+  ["117", "118", "119"],
+  "mrkdwn",
+  "*Channel:* \nGCP",
+  "*Product:* \n<https://console.suger.io/product/-zA_avczp|Suger Cloud GTM Platform>",
+  "*Offer:* \n<https://console.suger.io/offer/ckByxz7-p|test postpay gcp private offer by Chengjun v3>",
+  "*Offer ID:* \nckByxz7-p",
+  "*Offer Status:* \nPENDING_ACCEPTANCE",
+  {
+    "type": "108",
+    "text": "109",
+    "verbatim": false
+  },
+  {
+    "type": "108",
+    "text": "110",
+    "verbatim": false
+  },
+  {
+    "type": "108",
+    "text": "111",
+    "verbatim": false
+  },
+  {
+    "type": "108",
+    "text": "111",
+    "verbatim": false
+  },
+  {
+    "type": "108",
+    "text": "112",
+    "verbatim": false
+  },
+  {
+    "type": "108",
+    "text": "113",
+    "verbatim": false
+  }
+]

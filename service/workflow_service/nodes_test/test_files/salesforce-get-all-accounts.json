@@ -1,0 +1,17 @@
+{
+  "parameters": {
+    "limit": 10,
+    "operation": "getAll",
+    "options": {
+      "conditionsUi": {
+        "conditionValues": [
+          {
+            "field": "Name",
+            "value": "Suger Test For GetAll"
+          }
+        ]
+      }
+    },
+    "resource": "account"
+  }
+}

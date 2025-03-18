@@ -1,0 +1,68 @@
+{
+  "name": "Suger Email Cron",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 2
+            }
+          ]
+        }
+      },
+      "id": "4078909f-e6a4-4435-894c-28e410e7dad6",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        300,
+        360
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "toEmail": "test@suger.io",
+        "ccEmailList": [
+        ],
+        "subject": "Cron test Email",
+        "emailFormat": "both",
+        "text": "test message",
+        "html": "<p>\n<font color='red'> Cron </font>\n</p>"
+      },
+      "id": "12d80990-b753-42b3-84ee-65b64dab6517",
+      "name": "Suger Email",
+      "type": "n8n-nodes-base.sugerEmail",
+      "typeVersion": 1,
+      "position": [
+        520,
+        360
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Suger Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "",
+  "sugerOrgId": "w43Vc6UfM"
+}

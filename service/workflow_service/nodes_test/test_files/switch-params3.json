@@ -1,0 +1,11 @@
+{
+  "parameters": {
+    "mode": "expression",
+    "output": "={{ $json.id }}"
+  },
+  "id": "27c7ba13-be45-499a-9128-34c6fad6b686",
+  "name": "Switch",
+  "type": "n8n-nodes-base.switch",
+  "typeVersion": 2,
+  "position": [700, 480]
+}

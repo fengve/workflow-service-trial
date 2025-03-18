@@ -1,0 +1,87 @@
+{
+  "name": "Cron Schedule Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "id": "4fcc3c1c-1aee-4823-97fa-6dd921c5fa3b",
+      "name": "Schedule Trigger",
+      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [
+        660,
+        380
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "f0de7af5-316b-401c-94ff-d2f47a4edbf5",
+      "name": "Code",
+      "typeVersion": 2,
+      "type": "n8n-nodes-base.code",
+      "position": [
+        880,
+        380
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "toEmail": "test@suger.io",
+        "subject": "test workflow email",
+        "html": "test workflow email"
+      },
+      "id": "51d8f795-0fd3-4f84-b518-75f67d3f31bc",
+      "name": "Suger Email",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.sugerEmail",
+      "position": [
+        1100,
+        380
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Suger Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "0386c9dd-d3a3-4191-991e-9b0b4f60d1ae",
+  "sugerOrgId": "w43Vc6UfM",
+  "id": "CE6a4HppL4TAZ3za"
+}

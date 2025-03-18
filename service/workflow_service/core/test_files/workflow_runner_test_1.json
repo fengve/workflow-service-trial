@@ -1,0 +1,161 @@
+{
+  "workflowData": {
+    "name": "Runner test1",
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "798f6892-604d-4ce5-a252-7370c4cbf9cb",
+        "name": "When clicking \"Execute Workflow\"",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          500,
+          380
+        ]
+      },
+      {
+        "parameters": {
+          "command": "echo \"test\""
+        },
+        "id": "212b8865-964d-4460-ad51-26c33bf81af0",
+        "name": "Execute Command",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          760,
+          380
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "afbb5d54-07e8-44ee-b017-0b688d992940",
+        "name": "Delete Execution",
+        "type": "n8n-nodes-base.deleteExecution",
+        "typeVersion": 1,
+        "position": [
+          1380,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "05623fa8-ec89-46b3-b40a-3491829e2a9b",
+                "leftValue": "={{ Object.values($parameter[\"conditions\"][\"conditions\"][0]).join(', ') }}",
+                "rightValue": "test",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "063ca65a-8615-4b78-ad49-dd03cf7cc46f",
+        "name": "If",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          1020,
+          380
+        ]
+      },
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "triggerAtHour": 1
+              },
+              {
+                "field": "seconds"
+              },
+              {
+                "field": "minutes",
+                "minutesInterval": 1
+              }
+            ]
+          }
+        },
+        "id": "c78a2980-e585-483f-ab27-829b49cb6e95",
+        "name": "Schedule Trigger",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          460,
+          660
+        ]
+      }
+    ],
+    "pinData": {
+    },
+    "connections": {
+      "When clicking \"Execute Workflow\"": {
+        "main": [
+          [
+            {
+              "node": "Execute Command",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Command": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Delete Execution",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Execute Command",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": true,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [
+    ],
+    "versionId": "9943d26e-301d-41bd-890d-9d5381fc41a8",
+    "id": "YHXuzUV1vj6Mno91"
+  },
+  "pinData": {
+  },
+  "startNodes": [
+  ]
+}

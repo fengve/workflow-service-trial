@@ -1,0 +1,24 @@
+{
+  "parameters": {
+    "operation": "insert",
+    "projectId": {
+      "mode": "list",
+      "value": "suger-stag"
+    },
+    "datasetId": {
+      "mode": "id",
+      "value": "suger_stag_bigquery_test"
+    },
+    "tableId": {
+      "value": "simple-test-table",
+      "mode": "id"
+    },
+    "options": {}
+  },
+  "id": "4ec885a4-ddbb-4088-a81a-19efeccefe08",
+  "name": "Google BigQuery2",
+  "type": "n8n-nodes-base.googleBigQuery",
+  "typeVersion": 2,
+  "position": [960, 280],
+  "sugerOrgId": "w43Vc6UfM"
+}

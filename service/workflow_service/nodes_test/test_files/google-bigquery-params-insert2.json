@@ -1,0 +1,44 @@
+{
+  "parameters": {
+    "operation": "insert",
+    "projectId": {
+      "mode": "list",
+      "value": "suger-stag"
+    },
+    "datasetId": {
+      "mode": "id",
+      "value": "suger_stag_bigquery_test"
+    },
+    "tableId": {
+      "value": "simple-test-table",
+      "mode": "id"
+    },
+    "dataMode": "define",
+    "fieldsUi": {
+      "values": [
+        {
+          "fieldId": "Name",
+          "fieldValue": "={{ $json.arg1 }}"
+        },
+        {
+          "fieldId": "Count",
+          "fieldValue": "1"
+        },
+        {
+          "fieldId": "Size",
+          "fieldValue": "={{ $json.arg2 }}"
+        }
+      ]
+    },
+    "options": {
+      "batchSize": 100,
+      "skipInvalidRows": true
+    }
+  },
+  "id": "5f1bd8ba-c1b0-40cb-825a-6c89bec7df16",
+  "name": "Google BigQuery1",
+  "type": "n8n-nodes-base.googleBigQuery",
+  "typeVersion": 2,
+  "position": [1200, 460],
+  "sugerOrgId": "w43Vc6UfM"
+}

@@ -1,0 +1,7 @@
+{
+  "parameters": {
+    "accountId": "<REPLACE THIS AT RUNTIME>",
+    "operation": "get",
+    "resource": "account"
+  }
+}

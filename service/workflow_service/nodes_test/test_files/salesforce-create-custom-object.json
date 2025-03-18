@@ -1,0 +1,27 @@
+{
+  "parameters": {
+    "additionalFields": {},
+    "customFieldsUi": {
+      "customFieldsValues": [
+        {
+          "fieldId": "Name",
+          "value": "Hello"
+        },
+        {
+          "fieldId": "Suger__Buyer_External_ID__c",
+          "value": "1234567"
+        },
+        {
+          "fieldId": "Suger__Buyer_ID__c",
+          "value": "1234567"
+        },
+        {
+          "fieldId": "Suger__Partner__c",
+          "value": "AWS"
+        }
+      ]
+    },
+    "customObject": "Suger__Buyer__c",
+    "resource": "customObject"
+  }
+}

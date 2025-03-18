@@ -1,0 +1,109 @@
+{
+  "workflowData": {
+    "createdAt": "2024-04-06T15:14:11.100Z",
+    "updatedAt": "2024-04-06T15:15:52.570Z",
+    "id": "E1u7pNr5cyIW2Ocn",
+    "name": "My workflow 55",
+    "active": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "9ed8bbab-f4fe-4936-972e-b3cb6c6b1395",
+        "name": "When clicking \"Execute Workflow\"",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          500,
+          480
+        ]
+      },
+      {
+        "parameters": {
+          "command": "echo \"hello\""
+        },
+        "id": "04227ac0-081f-4806-85dc-cf5051abb112",
+        "name": "Execute Command",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          900,
+          340
+        ]
+      },
+      {
+        "parameters": {
+          "command": "echo \"world\""
+        },
+        "id": "075093e6-eb6e-413b-ac2e-e44ee1868a2e",
+        "name": "Execute Command1",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          900,
+          640
+        ]
+      },
+      {
+        "parameters": {},
+        "id": "e8c2c285-30c4-4581-96a2-7c103061ac93",
+        "name": "Merge",
+        "type": "n8n-nodes-base.merge",
+        "typeVersion": 2.1,
+        "position": [
+          1300,
+          500
+        ]
+      }
+    ],
+    "connections": {
+      "When clicking \"Execute Workflow\"": {
+        "main": [
+          [
+            {
+              "node": "Execute Command",
+              "type": "main",
+              "index": 0
+            },
+            {
+              "node": "Execute Command1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Command": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Command1": {
+        "main": [
+          [
+            {
+              "node": "Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "staticData": null,
+    "meta": null,
+    "pinData": {},
+    "versionId": "66b5f242-2900-4f63-961d-fb06f5875ab1",
+    "triggerCount": 0,
+    "sugerOrgId": "",
+    "tags": []
+  }
+}

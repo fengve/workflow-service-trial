@@ -1,0 +1,20 @@
+{
+    "parameters": {
+      "toEmail": "test@suger.io",
+      "ccEmailList": [
+        "test@suger.io"
+      ],
+      "subject": "n8n test",
+      "emailFormat": "html",
+      "html": "Hi {{ .params.toEmail }}, it is a test message, with subject {{ .params.subject }} on date {{ index .data 0 \"json\" \"date\" }}."
+    },
+    "id": "d4cd4e17-f504-4f5b-bda0-90a6c67e3cd9",
+    "name": "Suger Email",
+    "type": "n8n-nodes-base.sugerEmail",
+    "typeVersion": 1,
+    "position": [
+      1220,
+      280
+    ]
+  }
+  

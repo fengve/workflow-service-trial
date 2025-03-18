@@ -1,0 +1,93 @@
+{
+    "name": "Google Cloud Storage Cron Test Workflow",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "seconds",
+                            "secondsInterval": 2
+                        }
+                    ]
+                }
+            },
+            "id": "4c58eee5-b905-4db4-98d5-4b6eff38c918",
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                560,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "resource": "object",
+                "operation": "get",
+                "bucketName": "suger-dev-bucket",
+                "objectName": "dummy.pdf",
+                "getParameters": {},
+                "encryptionHeaders": {}
+            },
+            "id": "945a13fc-98cd-414e-a9cd-c25b1f62ef30",
+            "name": "Google Cloud Storage",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.googleCloudStorage",
+            "position": [
+                760,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+            },
+            "id": "483b6324-34c0-4fb5-9743-e6b405e04631",
+            "name": "Code",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                980,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Google Cloud Storage",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Cloud Storage": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "Tecl_2yaM"
+    },
+    "tags": [],
+    "versionId": "db4bc989-98df-4fef-a62f-bd3f406cea1c",
+    "sugerOrgId": "Tecl_2yaM",
+    "id": "eea596bb-6701-4c80-83fb-f509336d2fa6"
+}

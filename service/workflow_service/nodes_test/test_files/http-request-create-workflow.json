@@ -1,0 +1,47 @@
+{
+  "name": "New Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f075d2fe-01fb-42d6-9ec1-5b55d409e235",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [680, 120],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.restful-api.dev/objects",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{    \"name\": \"Apple MacBook Pro 16\",    \"data\": {       \"year\": 2019,       \"price\": 1849.99,       \"CPU model\": \"Intel Core i9\",       \"Hard disk size\": \"1 TB\"    } }",
+        "options": {}
+      },
+      "id": "6f3f4ea8-9c36-4f7b-97b1-84ce4a09e749",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [900, 120],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "cbdacca3-4a7b-4bfb-bb45-cfc4a8ae4243",
+  "name": "Webhook Test Mode of LastNode",
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "19d218d3-fe1c-484f-91c4-5a7f0a9d4f45",
+      "name": "Webhook",
+      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.webhook",
+      "position": [680, 140],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "1d52f10e-518b-4c73-9695-d22c03757e2g",
+        "responseMode": "lastNode"
+      },
+      "webhookId": "1d52f10e-518b-4c73-9695-d22c03757e2g",
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "4a139cee-4419-4bb7-b089-72b07dcfbc22",
+      "name": "Code",
+      "typeVersion": 2,
+      "type": "n8n-nodes-base.code",
+      "position": [900, 140],
+      "parameters": {
+        "jsCode": "const a = null;\n a.split(\" \");\n return [  {    json: JSON.parse($input.first().json.body)  }]"
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "versionId": "5e013d55-97d3-4aae-9180-acf5be501cd9",
+  "createdAt": "2024-04-17T09:10:09.165Z",
+  "updatedAt": "2024-04-18T09:06:11.22Z",
+  "sugerOrgId": "w43Vc6UfM"
+}

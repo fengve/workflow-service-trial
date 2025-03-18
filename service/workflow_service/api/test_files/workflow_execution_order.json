@@ -1,0 +1,138 @@
+{
+  "createdAt": "2024-04-22T05:51:06.153Z",
+  "updatedAt": "2024-04-22T08:55:20.000Z",
+  "name": "My workflow",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "9058c0cd-3ec7-4300-90dd-8e68a02ba412",
+      "name": "When clicking \"Test workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        320,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=echo {{ $json.stdout }}"
+      },
+      "id": "7fef0c6d-aa82-45bf-9ec1-60ed0ac4f5ca",
+      "name": "first",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        960,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=echo {{ $json.stdout }} \necho {{ $('first').item.json.stdout }}"
+      },
+      "id": "b5089fd1-fae7-4dee-9b13-affbde2f0c65",
+      "name": "second",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "command": "sleep 1\necho $(date)"
+      },
+      "id": "f9c46063-d180-49de-a917-63edd5591bf8",
+      "name": "pre1",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        660,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "command": "echo $(date)"
+      },
+      "id": "b845049d-4b45-48a0-8388-257744d364a1",
+      "name": "pre2",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        660,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking \"Test workflow\"": {
+      "main": [
+        [
+          {
+            "node": "pre1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "pre2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "first": {
+      "main": [
+        [
+          {
+            "node": "second",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pre1": {
+      "main": [
+        [
+          {
+            "node": "first",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pre2": {
+      "main": [
+        [
+          {
+            "node": "first",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "second": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "06203ca4-5f30-4df8-bd5e-38b46f7df28c",
+  "triggerCount": 0,
+  "tags": []
+}

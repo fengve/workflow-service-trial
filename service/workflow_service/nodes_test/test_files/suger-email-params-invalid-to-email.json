@@ -1,0 +1,19 @@
+{
+  "parameters": {
+    "toEmail": "invalidEmailAddress",
+    "ccEmailList": [
+      "test@suger.io"
+    ],
+    "subject": "n8n test",
+    "emailFormat": "text",
+    "text": "hi, it is a test message."
+  },
+  "id": "d4cd4e17-f504-4f5b-bda0-90a6c67e3cd9",
+  "name": "Suger Email",
+  "type": "n8n-nodes-base.sugerEmail",
+  "typeVersion": 1,
+  "position": [
+    1220,
+    280
+  ]
+}

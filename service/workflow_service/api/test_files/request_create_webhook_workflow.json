@@ -1,0 +1,51 @@
+{
+  "id": "",
+  "name": "New Workflow",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {}
+      },
+      "id": "c79953fd-9727-4248-80ce-e28c3dd5f382",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1160, 220],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {},
+      "id": "6ad8b248-1e0e-4741-b3c9-c39b30f2bf66",
+      "name": "Suger Notification Event Trigger1",
+      "type": "n8n-nodes-base.sugerNotificationEventTrigger",
+      "typeVersion": 1,
+      "position": [600, 220],
+      "webhookId": "097608c9-2d2a-46e8-bd79-8e0b5dfe2505",
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "path": "36ba164d-d38d-48e8-a61e-481cbc601f61",
+        "options": {}
+      },
+      "id": "c92ef21e-625c-45d7-8199-484f4d529a29",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [600, 480],
+      "webhookId": "36ba164d-d38d-48e8-a61e-481cbc601f61",
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "connections": {
+    "Suger Notification Event Trigger1": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    },
+    "Webhook": {
+      "main": [[{ "node": "Respond to Webhook", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}

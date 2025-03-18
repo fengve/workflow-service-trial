@@ -1,0 +1,103 @@
+{
+    "name": "Google Drive Node Test",
+    "nodes": [
+        {
+            "parameters": {},
+            "id": "88c8e1f6-c45f-4214-bdfa-4aceca1a596d",
+            "name": "When clicking \"Execute Workflow\"",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.manualTrigger",
+            "position": [
+                580,
+                100
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "parameters": {
+                "operation": "createFromText",
+                "content": "this is a test text from workflow",
+                "name": "Test-File-Workflow-2024-04-10",
+                "driveId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "My Drive"
+                },
+                "folderId": {
+                    "__rl": true,
+                    "cachedResultName": "test_folder",
+                    "cachedResultUrl": "https://drive.google.com/drive/folders/1T1VtKFBHFUuTSuE-SKK0E_ObbPAsg4x9",
+                    "mode": "list",
+                    "value": "1T1VtKFBHFUuTSuE-SKK0E_ObbPAsg4x9"
+                },
+                "options": {
+                    "propertiesUi": {
+                        "propertyValues": [
+                            {
+                                "key": "field1",
+                                "value": "value1"
+                            }
+                        ]
+                    }
+                }
+            },
+            "id": "c8a4c1f4-3c3d-4562-9d96-4aa394149989",
+            "name": "Google Drive",
+            "typeVersion": 3,
+            "type": "n8n-nodes-base.googleDrive",
+            "position": [
+                800,
+                100
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+            },
+            "id": "0d022c22-94f1-40a0-b9c1-7de9be62eb71",
+            "name": "Code",
+            "typeVersion": 2,
+            "type": "n8n-nodes-base.code",
+            "position": [
+                1020,
+                100
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Google Drive": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "When clicking \"Execute Workflow\"": {
+            "main": [
+                [
+                    {
+                        "node": "Google Drive",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "w43Vc6UfM"
+    },
+    "tags": [],
+    "versionId": "0f86b650-f1ae-403a-bbe4-636363fa1a6c",
+    "sugerOrgId": "w43Vc6UfM",
+    "id": "c53bbd4f-ae9e-460f-8c95-7814a9f1952a"
+}

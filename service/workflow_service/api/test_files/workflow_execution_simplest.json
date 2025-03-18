@@ -1,0 +1,28 @@
+{
+  "name": "Simplest workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "834a4b05-4f7b-4fce-92dd-5bc7c447cab3",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2d3db6b3-7c78-4ac4-92cd-ff5847678aa3",
+  "id": "avjJMjy0cYMYdw9D",
+  "meta": {
+    "instanceId": "27fc1821635e976beaafb45817a618244b1378f6b8fcad68a2830aaf21e9ae06"
+  },
+  "tags": []
+}

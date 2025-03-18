@@ -1,0 +1,65 @@
+{
+  "name": "New Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 2
+            }
+          ]
+        }
+      },
+      "id": "ba2ea4c6-44d1-44c1-8fee-6a6ccb052805",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        120,
+        400
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "toEmail": "test@suger.io",
+        "subject": "Test Message",
+        "emailFormat": "text",
+        "text": "test"
+      },
+      "id": "4b9affbb-9e61-48cf-865d-361f3b10e692",
+      "name": "Suger Email",
+      "type": "n8n-nodes-base.sugerEmail",
+      "typeVersion": 1,
+      "position": [
+        340,
+        400
+      ],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Suger Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "",
+  "sugerOrgId": "w43Vc6UfM"
+}

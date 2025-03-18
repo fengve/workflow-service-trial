@@ -1,0 +1,141 @@
+{
+  "name": "Suger Event Notification Trigger Test - Entitlement Events",
+  "active": true,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Good",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Bad",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Event": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Suger Notification Event Trigger": {
+      "main": [
+        [
+          {
+            "node": "Parse Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "df6de85c-2cb2-49a6-ab21-8003c97d544a",
+      "name": "Suger Notification Event Trigger",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.sugerNotificationEventTrigger",
+      "position": [
+        260,
+        220
+      ],
+      "webhookId": "1c5eebc6-b961-4adb-8e59-57af958e58e5",
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "8b6a3655-93ba-4d17-81a5-ed01d41b4db9",
+      "name": "Parse Event",
+      "typeVersion": 2,
+      "type": "n8n-nodes-base.code",
+      "position": [
+        480,
+        220
+      ],
+      "parameters": {
+        "jsCode": "// Convert the notification event from string to object.\n\nconst notificationEvent = JSON.parse($input.first().json);\n\nreturn [{ json: notificationEvent }];"
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "304b587f-1255-4c43-b4c4-af7665907073",
+      "name": "If",
+      "typeVersion": 2,
+      "type": "n8n-nodes-base.if",
+      "position": [
+        700,
+        220
+      ],
+      "parameters": {
+        "conditions": {
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "8ca0538f-3782-4cc5-a034-92981393b56c",
+              "leftValue": "={{ $json.entityType == \"ENTITLEMENT\" && ($json.action == \"CREATE\" || ($json.action == \"UPDATE\" && /(ManualRenew|AutoRenew)/.test($json.message))) }}",
+              "operator": {
+                "operation": "true",
+                "singleValue": true,
+                "type": "boolean"
+              },
+              "rightValue": ""
+            }
+          ],
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          }
+        },
+        "options": {}
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "463f82dd-42cc-488b-85b1-883f764d6bfe",
+      "name": "Good",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        960,
+        180
+      ],
+      "parameters": {
+        "command": "echo \"good\""
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "cef3c1f1-f0e3-41e5-b0c6-04934614f18b",
+      "name": "Bad",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [
+        980,
+        400
+      ],
+      "parameters": {
+        "command": "echo \"bad\""
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  }
+}

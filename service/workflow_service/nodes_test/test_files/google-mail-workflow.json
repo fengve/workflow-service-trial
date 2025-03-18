@@ -1,0 +1,81 @@
+{
+    "name": "Google Mail Test Workflow",
+    "nodes": [
+        {
+            "parameters": {},
+            "id": "525e817b-4c89-496e-961e-bd1cea7eb43c",
+            "name": "When clicking \"Execute Workflow\"",
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                560,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "toEmail": "no-reply@dev.suger.cloud",
+                "subject": "My Email Subject",
+                "emailFormat": "text",
+                "text": "Premature optimization is the root of all evil. - Donald Knuth"
+            },
+            "id": "91744054-b488-444f-849f-ed751b58439e",
+            "name": "Google Mail",
+            "type": "n8n-nodes-base.googleMail",
+            "typeVersion": 1,
+            "position": [
+                780,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+            },
+            "id": "0d022c22-94f1-40a0-b9c1-7de9be62eb71",
+            "name": "Code",
+            "typeVersion": 2,
+            "type": "n8n-nodes-base.code",
+            "position": [
+                1020,
+                100
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "When clicking \"Execute Workflow\"": {
+            "main": [
+                [
+                    {
+                        "node": "Google Mail",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Mail": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "Tecl_2yaM"
+    },
+    "tags": [],
+    "versionId": "",
+    "sugerOrgId": "Tecl_2yaM"
+}

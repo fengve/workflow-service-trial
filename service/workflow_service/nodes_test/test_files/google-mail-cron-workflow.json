@@ -1,0 +1,90 @@
+{
+    "name": "Google Mail Cron Test Workflow",
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "seconds",
+                            "secondsInterval": 2
+                        }
+                    ]
+                }
+            },
+            "id": "4c58eee5-b905-4db4-98d5-4b6eff38c918",
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                560,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "toEmail": "no-reply@dev.suger.cloud",
+                "subject": "My Email Subject",
+                "emailFormat": "text",
+                "text": "Premature optimization is the root of all evil. - Donald Knuth"
+            },
+            "id": "e869b863-f555-48ab-9e48-31f878df63c2",
+            "name": "Google Mail",
+            "type": "n8n-nodes-base.googleMail",
+            "typeVersion": 1,
+            "position": [
+                780,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+            },
+            "id": "0412dc5f-3098-4548-bba3-f86aba23383b",
+            "name": "Code",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1000,
+                140
+            ],
+            "sugerOrgId": "Tecl_2yaM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Google Mail",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Google Mail": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "Tecl_2yaM"
+    },
+    "tags": [],
+    "versionId": "",
+    "sugerOrgId": "Tecl_2yaM"
+}

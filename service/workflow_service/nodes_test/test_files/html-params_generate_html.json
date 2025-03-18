@@ -1,0 +1,10 @@
+{
+  "parameters": {
+    "html": "content from ./html-params_generate_html.html"
+  },
+  "id": "6c561a7f-04f3-43d6-aa5b-748b18fb1a9e",
+  "name": "HTML",
+  "type": "n8n-nodes-base.html",
+  "typeVersion": 1,
+  "position": [1260, 220]
+}

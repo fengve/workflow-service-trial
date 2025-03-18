@@ -1,0 +1,94 @@
+{
+    "id": "e5e22151-255d-4423-b28f-86ee5fe70984",
+    "name": "Microsoft Teams Workflow",
+    "active": false,
+    "connections": {
+        "Code": {
+            "main": [
+                [
+                    {
+                        "node": "Suger Microsoft Teams",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Suger Microsoft Teams": {
+            "main": [
+                []
+            ]
+        },
+        "When clicking \"Execute Workflow\"": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "nodes": [
+        {
+            "id": "cc887c6b-6c5b-451d-8d2c-fbab27666af9",
+            "name": "When clicking \"Execute Workflow\"",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.manualTrigger",
+            "position": [
+                480,
+                100
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "id": "db40fa92-a8f4-4112-9459-50e5c161c7e3",
+            "name": "Suger Microsoft Teams",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.sugerMicrosoftTeams",
+            "position": [
+                900,
+                100
+            ],
+            "parameters": {
+                "channelId": {
+                    "__rl": true,
+                    "cachedResultName": "suger-notification-dev",
+                    "mode": "list",
+                    "value": "19:643562469ab74e1283308f25a24aa1b3@thread.tacv2"
+                },
+                "messageType": "text",
+                "operation": "post",
+                "resource": "message",
+                "select": "channel",
+                "text": "={{ $json }}"
+            },
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "id": "5309e170-2069-493f-b251-7cc196dbeebe",
+            "name": "Code",
+            "typeVersion": 2,
+            "type": "n8n-nodes-base.code",
+            "position": [
+                700,
+                100
+            ],
+            "parameters": {
+                "jsCode": "let message = \"Test message generated from code\"\nreturn [{ json: message}]"
+            },
+            "sugerOrgId": "w43Vc6UfM"
+        }
+    ],
+    "pinData": {},
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "w43Vc6UfM"
+    },
+    "versionId": "4d5f5b38-027c-4b95-ac5d-b65b7a1850dc",
+    "createdAt": "2024-06-27T10:33:21.988Z",
+    "updatedAt": "2024-06-28T03:34:44.483Z",
+    "sugerOrgId": "w43Vc6UfM"
+}

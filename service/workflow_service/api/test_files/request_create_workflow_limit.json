@@ -1,0 +1,79 @@
+{
+    "name": "Limit Test",
+    "nodes": [
+        {
+            "parameters": {
+                "maxItems": 2
+            },
+            "id": "079c89c8-10fc-4fa4-8352-2e6aff41a882",
+            "name": "Limit",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.limit",
+            "position": [
+                840,
+                160
+            ],
+            "sugerOrgId": "some-org-id"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nvar arrayOfObjects = [];\n\n// Generate objects and push them into the array\nfor (var i = 0; i < 5; i++) {\n    var newObj = {\n        key: 'value' + i,\n        val: i\n    };\n    arrayOfObjects.push(newObj);\n}\nreturn arrayOfObjects;\n"
+            },
+            "id": "f482febd-5810-4f1d-a321-740fc0e4bbb2",
+            "name": "Code",
+            "typeVersion": 2,
+            "type": "n8n-nodes-base.code",
+            "position": [
+                580,
+                160
+            ],
+            "sugerOrgId": "some-org-id"
+        },
+        {
+            "parameters": {},
+            "id": "9360e685-97be-48a3-8041-433823f14fde",
+            "name": "When clicking \"Execute Workflow\"",
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                320,
+                160
+            ],
+            "sugerOrgId": "some-org-id"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Code": {
+            "main": [
+                [
+                    {
+                        "node": "Limit",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "When clicking \"Execute Workflow\"": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "some-org-id"
+    },
+    "tags": [],
+    "versionId": "34b65d42-fe99-4dc4-8307-3d0e7823c6f2",
+    "sugerOrgId": "some-org-id",
+    "id": "b5d224a5-6224-43dc-bef2-95cabc5ed455"
+}

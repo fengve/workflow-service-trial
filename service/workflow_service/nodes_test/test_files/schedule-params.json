@@ -1,0 +1,43 @@
+{
+  "rule": {
+    "interval": [
+      {
+        "field": "weeks",
+        "triggerAtDay": [
+          0,
+          1
+        ],
+        "triggerAtHour": 1,
+        "triggerAtMinute": 15
+      },
+      {
+        "field": "cronExpression",
+        "expression": "15 * * * *"
+      },
+      {
+        "daysInterval": 2,
+        "triggerAtHour": 1
+      },
+      {
+        "field": "months",
+        "monthsInterval": 2,
+        "triggerAtDayOfMonth": 2,
+        "triggerAtHour": 1,
+        "triggerAtMinute": 10
+      },
+      {
+        "field": "hours",
+        "hoursInterval": 2,
+        "triggerAtMinute": 10
+      },
+      {
+        "field": "minutes",
+        "minutesInterval": 15
+      },
+      {
+        "field": "seconds",
+        "secondsInterval": 35
+      }
+    ]
+  }
+}

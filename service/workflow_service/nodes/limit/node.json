@@ -1,0 +1,57 @@
+{
+  "codex": {
+    "alias": ["Limit", "Remove", "Slice", "Transform", "Array", "List", "Item"],
+    "categories": ["Core Nodes"],
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.limit/"
+        }
+      ]
+    },
+    "subcategories": {
+      "Core Nodes": ["Data Transformation"]
+    }
+  },
+  "defaults": {
+    "name": "Limit"
+  },
+  "description": "Restrict the number of items",
+  "displayName": "Limit",
+  "group": ["transform"],
+  "iconUrl": "/icons/embed/n8n-nodes-base.limit/limit.svg",
+  "inputs": ["main"],
+  "name": "n8n-nodes-base.limit",
+  "outputs": ["main"],
+  "properties": [
+    {
+      "default": 1,
+      "description": "If there are more items than this number, some are removed",
+      "displayName": "Max Items",
+      "name": "maxItems",
+      "type": "number",
+      "typeOptions": {
+        "minValue": 1
+      }
+    },
+    {
+      "default": "firstItems",
+      "description": "When removing items, whether to keep the ones at the start or the ending",
+      "displayName": "Keep",
+      "name": "keep",
+      "options": [
+        {
+          "name": "First Items",
+          "value": "firstItems"
+        },
+        {
+          "name": "Last Items",
+          "value": "lastItems"
+        }
+      ],
+      "type": "options"
+    }
+  ],
+  "subtitle": "",
+  "version": 1
+}

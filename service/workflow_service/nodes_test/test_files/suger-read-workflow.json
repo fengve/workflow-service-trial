@@ -1,0 +1,51 @@
+{
+  "name": "SugerRead E2E",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "8667f89f-23fc-488d-86d0-73629dd53120",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        880,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "product",
+        "operation": "list"
+      },
+      "id": "da507055-c0ac-4d04-b4cd-f081d52f0ff0",
+      "name": "Suger Read",
+      "type": "n8n-nodes-base.sugerRead",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        420
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Suger Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [],
+  "versionId": "7b523f42-d093-4f56-bcfa-9f33df682058",
+  "sugerOrgId": "w43Vc6UfM"
+}

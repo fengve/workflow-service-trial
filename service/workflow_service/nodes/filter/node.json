@@ -1,0 +1,84 @@
+{
+  "codex": {
+    "alias": [
+      "Router",
+      "Filter",
+      "Condition",
+      "Logic",
+      "Boolean",
+      "Branch"
+    ],
+    "categories": [
+      "Core Nodes"
+    ],
+    "resources": {
+      "primaryDocumentation": []
+    },
+    "subcategories": {
+      "Core Nodes": [
+        "Flow",
+        "Data Transformation"
+      ]
+    }
+  },
+  "defaults": {
+    "color": "#229eff",
+    "name": "Filter"
+  },
+  "description": "Remove items matching a condition",
+  "displayName": "Filter",
+  "group": [
+    "transform"
+  ],
+  "icon": "fa:filter",
+  "inputs": [
+    "main"
+  ],
+  "name": "n8n-nodes-base.filter",
+  "outputNames": [
+    "Kept",
+    "Discarded"
+  ],
+  "outputs": [
+    "main"
+  ],
+  "properties": [
+    {
+      "default": {},
+      "displayName": "Conditions",
+      "name": "conditions",
+      "placeholder": "Add Condition",
+      "type": "filter",
+      "typeOptions": {
+        "filter": {
+          "caseSensitive": "={{!$parameter.options.ignoreCase}}",
+          "typeValidation": "={{$parameter.options.looseTypeValidation ? \"loose\" : \"strict\"}}"
+        }
+      }
+    },
+    {
+      "default": {},
+      "displayName": "Options",
+      "name": "options",
+      "options": [
+        {
+          "default": true,
+          "description": "Whether to ignore letter case when evaluating conditions",
+          "displayName": "Ignore Case",
+          "name": "ignoreCase",
+          "type": "boolean"
+        },
+        {
+          "default": true,
+          "description": "Whether to try casting value types based on the selected operator",
+          "displayName": "Less Strict Type Validation",
+          "name": "looseTypeValidation",
+          "type": "boolean"
+        }
+      ],
+      "placeholder": "Add option",
+      "type": "collection"
+    }
+  ],
+  "version": 2
+}

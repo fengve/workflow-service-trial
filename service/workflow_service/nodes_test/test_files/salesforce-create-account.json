@@ -1,0 +1,10 @@
+{
+  "parameters": {
+    "additionalFields": {
+      "industry": "Technology",
+      "website": "https://suger.io"
+    },
+    "name": "Suger Test Workflow",
+    "resource": "account"
+  }
+}

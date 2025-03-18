@@ -1,0 +1,36 @@
+{
+    "parameters": {
+      "method": "POST",
+      "url": "https://api.dev.suger.cloud/org/w43Vc6UfM/file?extension=docx",
+      "sendBody": true,
+      "sendHeaders": true,
+      "contentType": "multipart-form-data",
+      "bodyParameters": {
+        "parameters": [
+          {
+            "parameterType": "formBinaryData",
+            "name": "file",
+            "inputDataFieldName": "data"
+          }
+        ]
+      },
+      "headerParameters": {
+        "parameters": [
+          {
+            "name": "Authorization",
+            "value": "Key <REPLACE AT RUNTIME>"
+          }
+        ]
+      },
+      "options": {}
+    },
+    "id": "6f3f4ea8-9c36-4f7b-97b1-84ce4a09e749",
+    "name": "HTTP Request",
+    "typeVersion": 4.1,
+    "type": "n8n-nodes-base.httpRequest",
+    "position": [
+      900,
+      120
+    ],
+    "sugerOrgId": "w43Vc6UfM"
+  }

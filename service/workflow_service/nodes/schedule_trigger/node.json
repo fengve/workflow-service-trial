@@ -1,0 +1,449 @@
+{
+  "activationMessage": "Your schedule trigger will now trigger executions on the schedule you have defined.",
+  "codex": {
+    "alias": [
+      "Time",
+      "Scheduler",
+      "Polling",
+      "Cron",
+      "Interval"
+    ],
+    "categories": [
+      "Core Nodes"
+    ],
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.scheduletrigger/"
+        }
+      ]
+    }
+  },
+  "defaults": {
+    "color": "#31C49F",
+    "name": "Schedule Trigger"
+  },
+  "description": "Triggers the workflow on a given schedule",
+  "displayName": "Schedule Trigger",
+  "eventTriggerDescription": "",
+  "group": [
+    "trigger",
+    "schedule"
+  ],
+  "icon": "fa:clock",
+  "inputs": [],
+  "name": "n8n-nodes-base.scheduleTrigger",
+  "outputs": [
+    "main"
+  ],
+  "properties": [
+    {
+      "default": "",
+      "displayName": "This workflow will run on the schedule you define here once you \u003ca data-key=\"activate\"\u003eactivate\u003c/a\u003e it.\u003cbr\u003e\u003cbr\u003eFor testing, you can also trigger it manually: by going back to the canvas and clicking ‘execute workflow’",
+      "name": "notice",
+      "type": "notice"
+    },
+    {
+      "default": {
+        "interval": [
+          {
+            "field": "days"
+          }
+        ]
+      },
+      "displayName": "Trigger Rules",
+      "name": "rule",
+      "options": [
+        {
+          "displayName": "Trigger Interval",
+          "name": "interval",
+          "values": [
+            {
+              "default": "days",
+              "displayName": "Trigger Interval",
+              "name": "field",
+              "options": [
+                {
+                  "name": "Seconds",
+                  "value": "seconds"
+                },
+                {
+                  "name": "Minutes",
+                  "value": "minutes"
+                },
+                {
+                  "name": "Hours",
+                  "value": "hours"
+                },
+                {
+                  "name": "Days",
+                  "value": "days"
+                },
+                {
+                  "name": "Weeks",
+                  "value": "weeks"
+                },
+                {
+                  "name": "Months",
+                  "value": "months"
+                },
+                {
+                  "name": "Custom (Cron)",
+                  "value": "cronExpression"
+                }
+              ],
+              "type": "options"
+            },
+            {
+              "default": 30,
+              "description": "Number of seconds between each workflow trigger",
+              "displayName": "Seconds Between Triggers",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "seconds"
+                  ]
+                }
+              },
+              "name": "secondsInterval",
+              "type": "number"
+            },
+            {
+              "default": 5,
+              "description": "Number of minutes between each workflow trigger",
+              "displayName": "Minutes Between Triggers",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "minutes"
+                  ]
+                }
+              },
+              "name": "minutesInterval",
+              "type": "number"
+            },
+            {
+              "default": 1,
+              "description": "Number of hours between each workflow trigger",
+              "displayName": "Hours Between Triggers",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "hours"
+                  ]
+                }
+              },
+              "name": "hoursInterval",
+              "type": "number"
+            },
+            {
+              "default": 1,
+              "description": "Number of days between each workflow trigger",
+              "displayName": "Days Between Triggers",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "days"
+                  ]
+                }
+              },
+              "name": "daysInterval",
+              "type": "number"
+            },
+            {
+              "default": 1,
+              "description": "Would run every week unless specified otherwise",
+              "displayName": "Weeks Between Triggers",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "weeks"
+                  ]
+                }
+              },
+              "name": "weeksInterval",
+              "type": "number"
+            },
+            {
+              "default": 1,
+              "description": "Would run every month unless specified otherwise",
+              "displayName": "Months Between Triggers",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "months"
+                  ]
+                }
+              },
+              "name": "monthsInterval",
+              "type": "number"
+            },
+            {
+              "default": 1,
+              "description": "The day of the month to trigger (1-31)",
+              "displayName": "Trigger at Day of Month",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "months"
+                  ]
+                }
+              },
+              "hint": "If a month doesn’t have this day, the node won’t trigger",
+              "name": "triggerAtDayOfMonth",
+              "type": "number",
+              "typeOptions": {
+                "maxValue": 31,
+                "minValue": 1
+              }
+            },
+            {
+              "default": [
+                0
+              ],
+              "displayName": "Trigger on Weekdays",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "weeks"
+                  ]
+                }
+              },
+              "name": "triggerAtDay",
+              "options": [
+                {
+                  "name": "Monday",
+                  "value": 1
+                },
+                {
+                  "name": "Tuesday",
+                  "value": 2
+                },
+                {
+                  "name": "Wednesday",
+                  "value": 3
+                },
+                {
+                  "name": "Thursday",
+                  "value": 4
+                },
+                {
+                  "name": "Friday",
+                  "value": 5
+                },
+                {
+                  "name": "Saturday",
+                  "value": 6
+                },
+                {
+                  "name": "Sunday",
+                  "value": 0
+                }
+              ],
+              "type": "multiOptions",
+              "typeOptions": {
+                "maxValue": 7
+              }
+            },
+            {
+              "default": 0,
+              "description": "The hour of the day to trigger",
+              "displayName": "Trigger at Hour",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "days",
+                    "weeks",
+                    "months"
+                  ]
+                }
+              },
+              "name": "triggerAtHour",
+              "options": [
+                {
+                  "displayName": "Midnight",
+                  "name": "Midnight",
+                  "value": 0
+                },
+                {
+                  "displayName": "1am",
+                  "name": "1am",
+                  "value": 1
+                },
+                {
+                  "displayName": "2am",
+                  "name": "2am",
+                  "value": 2
+                },
+                {
+                  "displayName": "3am",
+                  "name": "3am",
+                  "value": 3
+                },
+                {
+                  "displayName": "4am",
+                  "name": "4am",
+                  "value": 4
+                },
+                {
+                  "displayName": "5am",
+                  "name": "5am",
+                  "value": 5
+                },
+                {
+                  "displayName": "6am",
+                  "name": "6am",
+                  "value": 6
+                },
+                {
+                  "displayName": "7am",
+                  "name": "7am",
+                  "value": 7
+                },
+                {
+                  "displayName": "8am",
+                  "name": "8am",
+                  "value": 8
+                },
+                {
+                  "displayName": "9am",
+                  "name": "9am",
+                  "value": 9
+                },
+                {
+                  "displayName": "10am",
+                  "name": "10am",
+                  "value": 10
+                },
+                {
+                  "displayName": "11am",
+                  "name": "11am",
+                  "value": 11
+                },
+                {
+                  "displayName": "Noon",
+                  "name": "Noon",
+                  "value": 12
+                },
+                {
+                  "displayName": "1pm",
+                  "name": "1pm",
+                  "value": 13
+                },
+                {
+                  "displayName": "2pm",
+                  "name": "2pm",
+                  "value": 14
+                },
+                {
+                  "displayName": "3pm",
+                  "name": "3pm",
+                  "value": 15
+                },
+                {
+                  "displayName": "4pm",
+                  "name": "4pm",
+                  "value": 16
+                },
+                {
+                  "displayName": "5pm",
+                  "name": "5pm",
+                  "value": 17
+                },
+                {
+                  "displayName": "6pm",
+                  "name": "6pm",
+                  "value": 18
+                },
+                {
+                  "displayName": "7pm",
+                  "name": "7pm",
+                  "value": 19
+                },
+                {
+                  "displayName": "8pm",
+                  "name": "8pm",
+                  "value": 20
+                },
+                {
+                  "displayName": "9pm",
+                  "name": "9pm",
+                  "value": 21
+                },
+                {
+                  "displayName": "10pm",
+                  "name": "10pm",
+                  "value": 22
+                },
+                {
+                  "displayName": "11pm",
+                  "name": "11pm",
+                  "value": 23
+                }
+              ],
+              "type": "options"
+            },
+            {
+              "default": 0,
+              "description": "The minute past the hour to trigger (0-59)",
+              "displayName": "Trigger at Minute",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "hours",
+                    "days",
+                    "weeks",
+                    "months"
+                  ]
+                }
+              },
+              "name": "triggerAtMinute",
+              "type": "number",
+              "typeOptions": {
+                "maxValue": 59,
+                "minValue": 0
+              }
+            },
+            {
+              "default": "",
+              "displayName": "You can find help generating your cron expression \u003ca href=\"https://crontab.guru/examples.html\" target=\"_blank\"\u003ehere\u003c/a\u003e",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "cronExpression"
+                  ]
+                }
+              },
+              "name": "notice",
+              "type": "notice"
+            },
+            {
+              "default": "",
+              "displayName": "Expression",
+              "displayOptions": {
+                "show": {
+                  "field": [
+                    "cronExpression"
+                  ]
+                }
+              },
+              "hint": "Format: [Minute] [Hour] [Day of Month] [Month] [Day of Week]",
+              "name": "expression",
+              "placeholder": "eg. 0 15 * 1 sun",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "placeholder": "Add Rule",
+      "type": "fixedCollection",
+      "typeOptions": {
+        "multipleValues": true
+      }
+    }
+  ],
+  "version": [
+    1,
+    1.1
+  ]
+}

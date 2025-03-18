@@ -1,0 +1,165 @@
+{
+  "workflowData": {
+    "name": "My workflow 5",
+    "nodes": [
+      {
+        "parameters": {},
+        "id": "5da7d10f-e7f4-431a-b6a1-856830d2955d",
+        "name": "When clicking \"Execute Workflow\"",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          40,
+          440
+        ]
+      },
+      {
+        "parameters": {
+          "command": "echo \"test\""
+        },
+        "id": "abe08fa4-ee05-4906-8b6a-d35db1173845",
+        "name": "Execute Command",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          240,
+          440
+        ]
+      },
+      {
+        "parameters": {
+          "command": "time"
+        },
+        "id": "a2166ec6-88ea-4874-b3e3-64974855b9fe",
+        "name": "Execute Command1",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          440,
+          440
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "b19f6f2f-b91d-4a9a-b6fc-1b83451f8e5c",
+                "leftValue": "={{ $json.exitCode }}",
+                "rightValue": 0,
+                "operator": {
+                  "type": "number",
+                  "operation": "equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "id": "c64d42f8-2f7e-4df7-8d9e-0f2c4a7c919e",
+        "name": "If",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          660,
+          440
+        ]
+      },
+      {
+        "parameters": {
+          "command": "echo \"over\""
+        },
+        "id": "7f3aea7f-c495-4868-a622-5a9097f4c9d5",
+        "name": "Execute Command2",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          920,
+          540
+        ]
+      },
+      {
+        "parameters": {
+          "command": "echo \"finished\""
+        },
+        "id": "73e173c3-9694-4327-ade8-6d20841720c0",
+        "name": "Execute Command3",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          920,
+          360
+        ]
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When clicking \"Execute Workflow\"": {
+        "main": [
+          [
+            {
+              "node": "Execute Command",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Command": {
+        "main": [
+          [
+            {
+              "node": "Execute Command1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Command1": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Execute Command3",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Execute Command2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [],
+    "versionId": "6a626dfd-6d25-4d54-a515-6d407d746be3",
+    "id": "YTJd61HLJRKivodK"
+  },
+  "pinData": {},
+  "startNodes": []
+}

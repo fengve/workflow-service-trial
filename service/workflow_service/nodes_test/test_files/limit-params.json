@@ -1,0 +1,11 @@
+{
+  "parameters": {
+    "maxItems": "={{ $json.count }}"
+  },
+  "id": "11bc729b-6905-4300-83e4-950decea828d",
+  "name": "Limit",
+  "type": "n8n-nodes-base.limit",
+  "typeVersion": 1,
+  "position": [1420, 420],
+  "sugerOrgId": "w43Vc6UfM"
+}

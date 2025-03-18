@@ -1,0 +1,156 @@
+{
+  "workflowData": {
+    "name": "My workflow14",
+    "nodes": [
+      {
+        "parameters": {
+
+        },
+        "id": "15a41355-7de8-4b1a-914a-a5bfa6adbdf6",
+        "name": "When clicking \"Execute Workflow\"",
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          820,
+          360
+        ]
+      },
+      {
+        "parameters": {
+          "command": "tex d12"
+        },
+        "id": "59fcf81a-89a5-44e2-9d5f-c769ca4a47f8",
+        "name": "Execute Command",
+        "type": "n8n-nodes-base.executeCommand",
+        "typeVersion": 1,
+        "position": [
+          1040,
+          360
+        ]
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict"
+            },
+            "conditions": [
+              {
+                "id": "e8e82a09-8ad9-4af3-bbd8-1b0d0c36bd00",
+                "leftValue": "0",
+                "rightValue": "1",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {
+
+          }
+        },
+        "id": "a4920563-6630-44f7-baef-e1372b37bf46",
+        "name": "If",
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2,
+        "position": [
+          1260,
+          360
+        ]
+      },
+      {
+        "parameters": {
+
+        },
+        "id": "e15e25f1-047f-4e88-8178-351e40b961b3",
+        "name": "Delete Execution",
+        "type": "n8n-nodes-base.deleteExecution",
+        "typeVersion": 1,
+        "position": [
+          1480,
+          440
+        ]
+      },
+      {
+        "parameters": {
+          "toEmail": "jinxiong@suger.io",
+          "subject": "sub_test",
+          "html": "sub_test"
+        },
+        "id": "70084cdc-9674-46fc-b6ef-77c4f2ef1148",
+        "name": "Suger Email",
+        "type": "n8n-nodes-base.sugerEmail",
+        "typeVersion": 1,
+        "position": [
+          1480,
+          280
+        ]
+      }
+    ],
+    "pinData": {
+
+    },
+    "connections": {
+      "When clicking \"Execute Workflow\"": {
+        "main": [
+          [
+            {
+              "node": "Execute Command",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Execute Command": {
+        "main": [
+          [
+            {
+              "node": "If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "If": {
+        "main": [
+          [
+            {
+              "node": "Suger Email",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Delete Execution",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "tags": [
+
+    ],
+    "versionId": "9d5f480c-d2be-456c-8405-e706495f295b",
+    "id": "5qMydwAmRdprauFg"
+  },
+  "pinData": {
+
+  },
+  "startNodes": [
+
+  ]
+}

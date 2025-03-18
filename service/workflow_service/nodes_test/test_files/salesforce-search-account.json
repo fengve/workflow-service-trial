@@ -1,0 +1,6 @@
+{
+  "parameters": {
+    "query": "select Id, Name from Account",
+    "resource": "search"
+  }
+}

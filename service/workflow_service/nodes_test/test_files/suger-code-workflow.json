@@ -1,0 +1,47 @@
+{
+  "name": "Suger Code Test",
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Suger Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "nodes": [
+    {
+      "id": "d25b9997-0739-40db-b0a5-4f953d40ab94",
+      "name": "When clicking \"Execute Workflow\"",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [680, 180],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "id": "01ec579d-febf-40a7-9679-f8e3002fadef",
+      "name": "Suger Code",
+      "typeVersion": 1,
+      "type": "n8n-nodes-base.sugerCode",
+      "position": [1060, 180],
+      "parameters": {
+        "jsCode": "console.log('sugerOrgId', $sugerOrgId);\n $sugerOrgId = 'abcdde';\n console.log('sugerOrgId', $sugerOrgId);\n const products = $listProducts();\nconst productFirst = products[0];\nconst product = $getProduct(productFirst.id)\nreturn { \n  sugerOrgId: $sugerOrgId,\n   totalProductCount: products.length,\n    productId: productFirst.id,\n  product: product\n}"
+      },
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "versionId": "ed06b171-36d7-4cf1-9392-320121916879",
+  "createdAt": "2024-04-22T02:23:47.204Z",
+  "updatedAt": "2024-04-22T11:22:18.925Z",
+  "sugerOrgId": "w43Vc6UfM"
+}

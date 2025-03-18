@@ -1,0 +1,168 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "cbf27eb9-a88b-443b-a42b-95155c8e1362",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [840, 400],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = [\n  {\n    eventId: \"1\",\n    action: \"CREATE\",\n    entityType: \"OFFER\",\n  },\n  {\n    eventId: \"2\",\n    action: \"UPDATE\",\n    entityType: \"OFFER\",\n  },\n  {\n    eventId: \"3\",\n    action: \"CREATE\",\n    entityType: \"ENTITLEMENT\",\n  },\n  {\n    eventId: \"4\",\n    action: \"CANCEL\",\n    entityType: \"ENTITLEMENT\",\n  },\n];\n\nreturn data"
+      },
+      "id": "72e1fac1-9e6b-4e48-a71a-0b2fec893085",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1060, 400],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n\n<html>\n<head>\n  <meta charset=\"UTF-8\" />\n  <title>{{ $json.entityType }} {{ $json.action }}</title>\n</head>\n<body>\n  <div class=\"container\">\n    <h1>EVENT ID : {{ $json.eventId }}</h1> \n    <h2>This is content of create offer html.</h2>\n  </div>\n</body>\n</html>\n\n<style>\n.container {\n  background-color: #ffffff;\n  text-align: center;\n  padding: 16px;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #ff6d5a;\n  font-size: 24px;\n  font-weight: bold;\n  padding: 8px;\n}\n\nh2 {\n  color: #909399;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 8px;\n}\n</style>\n\n<script>\nconsole.log(\"Hello World!\");\n</script>"
+      },
+      "id": "b03f291f-066b-4bbf-b2ac-750304cf9e78",
+      "name": "HTML CREATE OFFER",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [1560, 200],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n\n<html>\n<head>\n  <meta charset=\"UTF-8\" />\n  <title>{{ $json.entityType }} {{ $json.action }}</title>\n</head>\n<body>\n  <div class=\"container\">\n    <h1>EVENT ID : {{ $json.eventId }}</h1> \n    <h2>This is content of update offer html.</h2>\n  </div>\n</body>\n</html>\n\n<style>\n.container {\n  background-color: #ffffff;\n  text-align: center;\n  padding: 16px;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #ff6d5a;\n  font-size: 24px;\n  font-weight: bold;\n  padding: 8px;\n}\n\nh2 {\n  color: #909399;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 8px;\n}\n</style>\n\n<script>\nconsole.log(\"Hello World!\");\n</script>"
+      },
+      "id": "c9e64f15-f730-412d-9078-dc044174ef79",
+      "name": "HTML UPDATE OFFER",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [1560, 380],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $json.entityType }} {{ $json.action }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "OFFER CREATE",
+              "outputKey": "OFFER CREATE"
+            },
+            {
+              "value2": "OFFER UPDATE",
+              "outputKey": "OFFER UPDATE"
+            },
+            {
+              "value2": "ENTITLEMENT CREATE",
+              "outputKey": "ENTITLEMENT CREATE"
+            },
+            {
+              "operation": "regex",
+              "value2": "/^e.*l/i",
+              "outputKey": "ENTITLEMENT CANCEL"
+            }
+          ]
+        }
+      },
+      "id": "15ba5ec8-8943-49e7-97a7-a437c6cb1ccf",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [1300, 400],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n\n<html>\n<head>\n  <meta charset=\"UTF-8\" />\n  <title>{{ $json.entityType }} {{ $json.action }}</title>\n</head>\n<body>\n  <div class=\"container\">\n    <h1>EVENT ID : {{ $json.eventId }}</h1> \n    <h2>This is content of create entitlement html.</h2>\n  </div>\n</body>\n</html>\n\n<style>\n.container {\n  background-color: #ffffff;\n  text-align: center;\n  padding: 16px;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #ff6d5a;\n  font-size: 24px;\n  font-weight: bold;\n  padding: 8px;\n}\n\nh2 {\n  color: #909399;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 8px;\n}\n</style>\n\n<script>\nconsole.log(\"Hello World!\");\n</script>"
+      },
+      "id": "85207158-2478-43ab-a5c4-4cc14782f7f0",
+      "name": "HTML CREATE ENTITLEMENT",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [1560, 560],
+      "sugerOrgId": "w43Vc6UfM"
+    },
+    {
+      "parameters": {
+        "html": "<!DOCTYPE html>\n\n<html>\n<head>\n  <meta charset=\"UTF-8\" />\n  <title>{{ $json.entityType }} {{ $json.action }}</title>\n</head>\n<body>\n  <div class=\"container\">\n    <h1>EVENT ID : {{ $json.eventId }}</h1> \n    <h2>This is content of cancel entitlement html.</h2>\n  </div>\n</body>\n</html>\n\n<style>\n.container {\n  background-color: #ffffff;\n  text-align: center;\n  padding: 16px;\n  border-radius: 8px;\n}\n\nh1 {\n  color: #ff6d5a;\n  font-size: 24px;\n  font-weight: bold;\n  padding: 8px;\n}\n\nh2 {\n  color: #909399;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 8px;\n}\n</style>\n\n<script>\nconsole.log(\"Hello World!\");\n</script>"
+      },
+      "id": "ba59b3b1-185f-4d16-977e-8f936fe507d9",
+      "name": "HTML CANCEL ENTITLEMENT",
+      "type": "n8n-nodes-base.html",
+      "typeVersion": 1,
+      "position": [1560, 780],
+      "sugerOrgId": "w43Vc6UfM"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTML CREATE OFFER",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTML UPDATE OFFER",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTML CREATE ENTITLEMENT",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTML CANCEL ENTITLEMENT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "sugerOrgId": "w43Vc6UfM"
+  },
+  "tags": [],
+  "versionId": "bcfe2518-aa5a-40d1-a038-e767f7010756",
+  "sugerOrgId": "w43Vc6UfM",
+  "id": "eXl1ISbAXldvATrz"
+}

@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "url": "https://api.restful-api.dev/objects",
+    "sendQuery": true,
+    "queryParameters": {
+      "parameters": [
+        {
+          "name": "id",
+          "value": "={{$json.id}}"
+        }
+      ]
+    },
+    "options": {
+      "timeout": "={{$json.timeout}}"
+    }
+  },
+  "id": "712a1171-4596-4858-b40d-0edd970027eb",
+  "name": "HTTP Request",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4.1,
+  "position": [720, 180],
+  "sugerOrgId": "w43Vc6UfM"
+}

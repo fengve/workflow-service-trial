@@ -1,0 +1,31 @@
+{
+  "id": "",
+  "name": "New Workflow",
+  "active": false,
+  "nodes": [
+    {
+      "id": "e2114260-a9f1-4e35-b1fe-8c491d35dcaa",
+      "name": "Schedule Trigger",
+      "typeVersion": 1.1,
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "position": [420, 280],
+      "parameters": { "rule": { "interval": [{ "triggerAtHour": 8 }] } }
+    },
+    {
+      "id": "cb2fbe6d-b9b0-4ee4-b1a4-767c181a3c7c",
+      "name": "Code",
+      "typeVersion": 2,
+      "type": "n8n-nodes-base.code",
+      "position": [640, 280],
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{ "node": "Code", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": { "executionOrder": "v1" }
+}

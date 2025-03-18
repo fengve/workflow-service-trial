@@ -1,0 +1,19 @@
+{
+  "parameters": {
+    "projectId": {
+      "mode": "list",
+      "value": "suger-stag"
+    },
+    "options": {
+      "includeSchema": false,
+      "rawOutput": false
+    },
+    "sqlQuery": "=SELECT * FROM `suger-stag.suger_stag_bigquery_test.simple-test-table` LIMIT {{ $json.limit }}"
+  },
+  "id": "84641e8c-5631-4e05-9286-085b94115ffd",
+  "name": "Google BigQuery",
+  "type": "n8n-nodes-base.googleBigQuery",
+  "typeVersion": 2,
+  "position": [1140, 240],
+  "sugerOrgId": "w43Vc6UfM"
+}

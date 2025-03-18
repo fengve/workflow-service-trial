@@ -1,0 +1,85 @@
+{
+    "name": "Suger Email Test Workflow",
+    "nodes": [
+        {
+            "parameters": {},
+            "id": "c2e2e575-b278-4458-9ba4-32d1f59bffd7",
+            "name": "When clicking \"Execute Workflow\"",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.manualTrigger",
+            "position": [
+                540,
+                180
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "parameters": {
+                "toEmail": "test@suger.io",
+                "ccEmailList": [
+                    "={{ $json.emails.join(',') }}", 
+                    "d@suger.io"
+                ],
+                "subject": "Test subject",
+                "html": "hello world!\n\nsecond line\n\nthird line"
+            },
+            "id": "1cd6d3a1-d28e-476e-91a7-d89d38f7ff8a",
+            "name": "Suger Email",
+            "typeVersion": 1,
+            "type": "n8n-nodes-base.sugerEmail",
+            "position": [
+                920,
+                180
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n\nreturn {\n  \"json\": {\n    \"emails\": [\"a@suger.io\", \"b@suger.io\", \"c@suger.io\"]\n  }\n}\n"
+            },
+            "id": "3ed85b53-9d56-4629-9457-8257c6126d64",
+            "name": "Code",
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                760,
+                180
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "When clicking \"Execute Workflow\"": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Code": {
+            "main": [
+                [
+                    {
+                        "node": "Suger Email",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "w43Vc6UfM"
+    },
+    "tags": [],
+    "versionId": "a5c0ccab-0719-4cc1-a8bd-e2d0d919e379",
+    "sugerOrgId": "w43Vc6UfM",
+    "id": "c294a847-810d-4a9d-9324-9dad3dd70701"
+}

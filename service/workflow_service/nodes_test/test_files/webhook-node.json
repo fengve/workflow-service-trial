@@ -1,0 +1,417 @@
+{
+  "activationMessage": "You can now make calls to your production webhook URL.",
+  "codex": {
+    "alias": ["HTTP", "API", "Build", "WH"],
+    "categories": ["Development", "Core Nodes"],
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/"
+        }
+      ]
+    },
+    "subcategories": {
+      "Core Nodes": ["Helpers"]
+    }
+  },
+  "credentials": [
+    {
+      "displayOptions": {
+        "show": {
+          "authentication": ["basicAuth"]
+        }
+      },
+      "name": "httpBasicAuth",
+      "required": true
+    },
+    {
+      "displayOptions": {
+        "show": {
+          "authentication": ["headerAuth"]
+        }
+      },
+      "name": "httpHeaderAuth",
+      "required": true
+    }
+  ],
+  "defaults": {
+    "name": "Webhook"
+  },
+  "description": "Starts the workflow when a webhook is called",
+  "displayName": "Webhook",
+  "eventTriggerDescription": "Waiting for you to call the Test URL",
+  "group": ["trigger"],
+  "iconUrl": "/icons/embed/n8n-nodes-base.webhook/webhook.svg",
+  "inputs": [],
+  "name": "n8n-nodes-base.webhook",
+  "outputs": ["main"],
+  "properties": [
+    {
+      "default": "none",
+      "description": "The way to authenticate",
+      "displayName": "Authentication",
+      "name": "authentication",
+      "options": [
+        {
+          "name": "Basic Auth",
+          "value": "basicAuth"
+        },
+        {
+          "name": "Header Auth",
+          "value": "headerAuth"
+        },
+        {
+          "name": "None",
+          "value": "none"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "GET",
+      "description": "The HTTP method to listen to",
+      "displayName": "HTTP Method",
+      "name": "httpMethod",
+      "options": [
+        {
+          "name": "DELETE",
+          "value": "DELETE"
+        },
+        {
+          "name": "GET",
+          "value": "GET"
+        },
+        {
+          "name": "HEAD",
+          "value": "HEAD"
+        },
+        {
+          "name": "PATCH",
+          "value": "PATCH"
+        },
+        {
+          "name": "POST",
+          "value": "POST"
+        },
+        {
+          "name": "PUT",
+          "value": "PUT"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "",
+      "description": "The path to listen to",
+      "displayName": "Path",
+      "name": "path",
+      "placeholder": "webhook",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "default": "onReceived",
+      "description": "When and how to respond to the webhook",
+      "displayName": "Respond",
+      "name": "responseMode",
+      "options": [
+        {
+          "description": "As soon as this node executes",
+          "name": "Immediately",
+          "value": "onReceived"
+        },
+        {
+          "description": "Returns data of the last-executed node",
+          "name": "When Last Node Finishes",
+          "value": "lastNode"
+        },
+        {
+          "description": "Response defined in that node",
+          "name": "Using 'Respond to Webhook' Node",
+          "value": "responseNode"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "",
+      "displayName": "Insert a 'Respond to Webhook' node to control when and how you respond.",
+      "displayOptions": {
+        "show": {
+          "responseMode": ["responseNode"]
+        }
+      },
+      "name": "webhookNotice",
+      "type": "notice"
+    },
+    {
+      "default": 200,
+      "description": "The HTTP Response code to return",
+      "displayName": "Response Code",
+      "displayOptions": {
+        "hide": {
+          "responseMode": ["responseNode"]
+        }
+      },
+      "name": "responseCode",
+      "type": "number",
+      "typeOptions": {
+        "maxValue": 599,
+        "minValue": 100
+      }
+    },
+    {
+      "default": "firstEntryJson",
+      "description": "What data should be returned. If it should return all items as an array or only the first item as object.",
+      "displayName": "Response Data",
+      "displayOptions": {
+        "show": {
+          "responseMode": ["lastNode"]
+        }
+      },
+      "name": "responseData",
+      "options": [
+        {
+          "description": "Returns all the entries of the last node. Always returns an array.",
+          "name": "All Entries",
+          "value": "allEntries"
+        },
+        {
+          "description": "Returns the JSON data of the first entry of the last node. Always returns a JSON object.",
+          "name": "First Entry JSON",
+          "value": "firstEntryJson"
+        },
+        {
+          "description": "Returns the binary data of the first entry of the last node. Always returns a binary file.",
+          "name": "First Entry Binary",
+          "value": "firstEntryBinary"
+        },
+        {
+          "description": "Returns without a body",
+          "name": "No Response Body",
+          "value": "noData"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "data",
+      "description": "Name of the binary property to return",
+      "displayName": "Property Name",
+      "displayOptions": {
+        "show": {
+          "responseData": ["firstEntryBinary"]
+        }
+      },
+      "name": "responseBinaryPropertyName",
+      "required": true,
+      "type": "string"
+    },
+    {
+      "default": {},
+      "displayName": "Options",
+      "name": "options",
+      "options": [
+        {
+          "default": false,
+          "description": "Whether the webhook will receive binary data",
+          "displayName": "Binary Data",
+          "displayOptions": {
+            "show": {
+              "/httpMethod": ["PATCH", "PUT", "POST"],
+              "@version": [1]
+            }
+          },
+          "name": "binaryData",
+          "type": "boolean"
+        },
+        {
+          "default": "data",
+          "description": "Name of the binary property to write the data of the received file to. If the data gets received via \"Form-Data Multipart\" it will be the prefix and a number starting with 0 will be attached to it.",
+          "displayName": "Binary Property",
+          "displayOptions": {
+            "show": {
+              "@version": [1],
+              "binaryData": [true]
+            }
+          },
+          "name": "binaryPropertyName",
+          "type": "string"
+        },
+        {
+          "default": "data",
+          "description": "Name of the binary property to write the data of the received file to, only relevant if binary data is received",
+          "displayName": "Binary Property",
+          "displayOptions": {
+            "hide": {
+              "@version": [1]
+            }
+          },
+          "name": "binaryPropertyName",
+          "type": "string"
+        },
+        {
+          "default": false,
+          "description": "Whether to ignore requests from bots like link previewers and web crawlers",
+          "displayName": "Ignore Bots",
+          "name": "ignoreBots",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Whether to send any body in the response",
+          "displayName": "No Response Body",
+          "displayOptions": {
+            "hide": {
+              "rawBody": [true]
+            },
+            "show": {
+              "/responseMode": ["onReceived"]
+            }
+          },
+          "name": "noResponseBody",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Raw body (binary)",
+          "displayName": "Raw Body",
+          "displayOptions": {
+            "hide": {
+              "binaryData": [true],
+              "noResponseBody": [true]
+            },
+            "show": {
+              "@version": [1]
+            }
+          },
+          "name": "rawBody",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Whether to return the raw body",
+          "displayName": "Raw Body",
+          "displayOptions": {
+            "hide": {
+              "@version": [1],
+              "noResponseBody": [true]
+            }
+          },
+          "name": "rawBody",
+          "type": "boolean"
+        },
+        {
+          "default": "",
+          "description": "Custom response data to send",
+          "displayName": "Response Data",
+          "displayOptions": {
+            "hide": {
+              "noResponseBody": [true]
+            },
+            "show": {
+              "/responseMode": ["onReceived"]
+            }
+          },
+          "name": "responseData",
+          "placeholder": "success",
+          "type": "string"
+        },
+        {
+          "default": "",
+          "description": "Set a custom content-type to return if another one as the \"application/json\" should be returned",
+          "displayName": "Response Content-Type",
+          "displayOptions": {
+            "show": {
+              "/responseData": ["firstEntryJson"],
+              "/responseMode": ["lastNode"]
+            }
+          },
+          "name": "responseContentType",
+          "placeholder": "application/xml",
+          "type": "string"
+        },
+        {
+          "default": {},
+          "description": "Add headers to the webhook response",
+          "displayName": "Response Headers",
+          "name": "responseHeaders",
+          "options": [
+            {
+              "displayName": "Entries",
+              "name": "entries",
+              "values": [
+                {
+                  "default": "",
+                  "description": "Name of the header",
+                  "displayName": "Name",
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "default": "",
+                  "description": "Value of the header",
+                  "displayName": "Value",
+                  "name": "value",
+                  "type": "string"
+                }
+              ]
+            }
+          ],
+          "placeholder": "Add Response Header",
+          "type": "fixedCollection",
+          "typeOptions": {
+            "multipleValues": true
+          }
+        },
+        {
+          "default": "data",
+          "description": "Name of the property to return the data of instead of the whole JSON",
+          "displayName": "Property Name",
+          "displayOptions": {
+            "show": {
+              "/responseData": ["firstEntryJson"],
+              "/responseMode": ["lastNode"]
+            }
+          },
+          "name": "responsePropertyName",
+          "type": "string"
+        },
+        {
+          "default": "*",
+          "description": "The origin(s) to allow cross-origin non-preflight requests from in a browser",
+          "displayName": "Allowed Origins (CORS)",
+          "name": "allowedOrigins",
+          "type": "string"
+        }
+      ],
+      "placeholder": "Add Option",
+      "type": "collection"
+    }
+  ],
+  "supportsCORS": true,
+  "triggerPanel": {
+    "activationHint": "Once you’ve finished building your workflow, run it without having to click this button by using the production webhook URL.",
+    "executionsHelp": {
+      "active": "Webhooks have two modes: test and production. \u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse test mode while you build your workflow\u003c/b\u003e. Click the 'listen' button, then make a request to the test URL. The executions will show up in the editor.\u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse production mode to run your workflow automatically\u003c/b\u003e. Since the workflow is activated, you can make requests to the production URL. These executions will show up in the \u003ca data-key=\"executions\"\u003eexecutions list\u003c/a\u003e, but not in the editor.",
+      "inactive": "Webhooks have two modes: test and production. \u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse test mode while you build your workflow\u003c/b\u003e. Click the 'listen' button, then make a request to the test URL. The executions will show up in the editor.\u003cbr /\u003e \u003cbr /\u003e \u003cb\u003eUse production mode to run your workflow automatically\u003c/b\u003e. \u003ca data-key=\"activate\"\u003eActivate\u003c/a\u003e the workflow, then make requests to the production URL. These executions will show up in the executions list, but not in the editor."
+    },
+    "header": ""
+  },
+  "version": [1, 1.1],
+  "webhooks": [
+    {
+      "httpMethod": "={{$parameter[\"httpMethod\"] || \"GET\"}}",
+      "isFullPath": true,
+      "name": "default",
+      "path": "={{$parameter[\"path\"]}}",
+      "responseBinaryPropertyName": "={{$parameter[\"responseBinaryPropertyName\"]}}",
+      "responseCode": "={{$parameter[\"responseCode\"]}}",
+      "responseContentType": "={{$parameter[\"options\"][\"responseContentType\"]}}",
+      "responseData": "={{$parameter[\"responseData\"] || ($parameter.options.noResponseBody ? \"noData\" : undefined) }}",
+      "responseHeaders": "={{$parameter[\"options\"][\"responseHeaders\"]}}",
+      "responseMode": "={{$parameter[\"responseMode\"]}}",
+      "responsePropertyName": "={{$parameter[\"options\"][\"responsePropertyName\"]}}"
+    }
+  ]
+}

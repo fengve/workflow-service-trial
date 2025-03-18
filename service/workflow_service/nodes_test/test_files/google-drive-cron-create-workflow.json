@@ -1,0 +1,109 @@
+{
+    "name": "Google Drive Node Test",
+    "nodes": [
+        {
+            "parameters": {
+                "operation": "createFromText",
+                "content": "this is a test text from workflow",
+                "name": "Test-File-Workflow-2024-04-10",
+                "driveId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "My Drive"
+                },
+                "folderId": {
+                    "__rl": true,
+                    "cachedResultName": "test_folder",
+                    "cachedResultUrl": "https://drive.google.com/drive/folders/1T1VtKFBHFUuTSuE-SKK0E_ObbPAsg4x9",
+                    "mode": "list",
+                    "value": "1T1VtKFBHFUuTSuE-SKK0E_ObbPAsg4x9"
+                },
+                "options": {
+                    "propertiesUi": {
+                        "propertyValues": [
+                            {
+                                "key": "field1",
+                                "value": "value1"
+                            }
+                        ]
+                    }
+                }
+            },
+            "id": "c8a4c1f4-3c3d-4562-9d96-4aa394149989",
+            "name": "Google Drive",
+            "typeVersion": 3,
+            "type": "n8n-nodes-base.googleDrive",
+            "position": [
+                800,
+                100
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "parameters": {
+                "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+            },
+            "id": "0d022c22-94f1-40a0-b9c1-7de9be62eb71",
+            "name": "Code",
+            "typeVersion": 2,
+            "type": "n8n-nodes-base.code",
+            "position": [
+                1020,
+                100
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        },
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "seconds"
+                        }
+                    ]
+                }
+            },
+            "id": "6153e351-c8e2-45cd-bbc5-99af4b50e2cb",
+            "name": "Schedule Trigger",
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.1,
+            "position": [
+                560,
+                100
+            ],
+            "sugerOrgId": "w43Vc6UfM"
+        }
+    ],
+    "pinData": {},
+    "connections": {
+        "Google Drive": {
+            "main": [
+                [
+                    {
+                        "node": "Code",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Google Drive",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "active": false,
+    "settings": {
+        "executionOrder": "v1",
+        "sugerOrgId": "w43Vc6UfM"
+    },
+    "tags": [],
+    "sugerOrgId": "w43Vc6UfM"
+}

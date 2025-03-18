@@ -1,0 +1,30 @@
+{
+  "displayName": "Delete Execution",
+  "name": "n8n-nodes-base.deleteExecution",
+  "icon": "fa:trash",
+  "group": [
+    "transform"
+  ],
+  "version": 1,
+  "description": "Delete the execution record",
+  "defaults": {
+    "name": "Delete Execution"
+  },
+  "inputs": [
+    "main"
+  ],
+  "outputs": [],
+  "properties": [],
+  "codex": {
+    "categories": [
+      "Development"
+    ],
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://www.suger.io/docs/get-started"
+        }
+      ]
+    }
+  }
+}

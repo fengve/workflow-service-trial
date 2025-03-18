@@ -1,0 +1,736 @@
+{
+  "codex": {
+    "alias": [
+      "Join",
+      "Concatenate",
+      "Wait"
+    ],
+    "categories": [
+      "Core Nodes"
+    ],
+    "resources": {
+      "primaryDocumentation": [
+        {
+          "url": "https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.merge/"
+        }
+      ]
+    },
+    "subcategories": {
+      "Core Nodes": [
+        "Flow",
+        "Data Transformation"
+      ]
+    }
+  },
+  "defaultVersion": 2.1,
+  "defaults": {
+    "color": "#00bbcc",
+    "name": "Merge"
+  },
+  "description": "Merge data of two inputs once data from both is available",
+  "displayName": "Merge",
+  "group": [
+    "transform"
+  ],
+  "icon": "fa:code-branch",
+  "inputNames": [
+    "Input 1",
+    "Input 2"
+  ],
+  "inputs": [
+    "main",
+    "main"
+  ],
+  "name": "n8n-nodes-base.merge",
+  "outputs": [
+    "main"
+  ],
+  "properties": [
+    {
+      "default": "append",
+      "description": "How data of branches should be merged",
+      "displayName": "Mode",
+      "name": "mode",
+      "options": [
+        {
+          "description": "All items of input 1, then all items of input 2",
+          "name": "Append",
+          "value": "append"
+        },
+        {
+          "description": "Merge matching items together",
+          "name": "Combine",
+          "value": "combine"
+        },
+        {
+          "description": "Output input data, without modifying it",
+          "name": "Choose Branch",
+          "value": "chooseBranch"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "mergeByFields",
+      "displayName": "Combination Mode",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "combine"
+          ]
+        }
+      },
+      "name": "combinationMode",
+      "options": [
+        {
+          "description": "Combine items with the same field values",
+          "name": "Merge By Fields",
+          "value": "mergeByFields"
+        },
+        {
+          "description": "Combine items based on their order",
+          "name": "Merge By Position",
+          "value": "mergeByPosition"
+        },
+        {
+          "description": "All possible item combinations (cross join)",
+          "name": "Multiplex",
+          "value": "multiplex"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": {
+        "values": [
+          {
+            "field1": "",
+            "field2": ""
+          }
+        ]
+      },
+      "displayName": "Fields to Match",
+      "displayOptions": {
+        "show": {
+          "combinationMode": [
+            "mergeByFields"
+          ],
+          "mode": [
+            "combine"
+          ]
+        }
+      },
+      "name": "mergeByFields",
+      "options": [
+        {
+          "displayName": "Values",
+          "name": "values",
+          "values": [
+            {
+              "default": "",
+              "displayName": "Input 1 Field",
+              "hint": " Enter the field name as text",
+              "name": "field1",
+              "placeholder": "e.g. id",
+              "requiresDataPath": "single",
+              "type": "string"
+            },
+            {
+              "default": "",
+              "displayName": "Input 2 Field",
+              "hint": " Enter the field name as text",
+              "name": "field2",
+              "placeholder": "e.g. id",
+              "requiresDataPath": "single",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "placeholder": "Add Fields to Match",
+      "type": "fixedCollection",
+      "typeOptions": {
+        "multipleValues": true
+      }
+    },
+    {
+      "default": "keepMatches",
+      "displayName": "Output Type",
+      "displayOptions": {
+        "show": {
+          "combinationMode": [
+            "mergeByFields"
+          ],
+          "mode": [
+            "combine"
+          ]
+        }
+      },
+      "name": "joinMode",
+      "options": [
+        {
+          "description": "Items that match, merged together (inner join)",
+          "name": "Keep Matches",
+          "value": "keepMatches"
+        },
+        {
+          "description": "Items that don't match",
+          "name": "Keep Non-Matches",
+          "value": "keepNonMatches"
+        },
+        {
+          "description": "Items that match merged together, plus items that don't match (outer join)",
+          "name": "Keep Everything",
+          "value": "keepEverything"
+        },
+        {
+          "description": "All of input 1, with data from input 2 added in (left join)",
+          "name": "Enrich Input 1",
+          "value": "enrichInput1"
+        },
+        {
+          "description": "All of input 2, with data from input 1 added in (right join)",
+          "name": "Enrich Input 2",
+          "value": "enrichInput2"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "both",
+      "displayName": "Output Data From",
+      "displayOptions": {
+        "show": {
+          "combinationMode": [
+            "mergeByFields"
+          ],
+          "joinMode": [
+            "keepMatches"
+          ],
+          "mode": [
+            "combine"
+          ]
+        }
+      },
+      "name": "outputDataFrom",
+      "options": [
+        {
+          "name": "Both Inputs Merged Together",
+          "value": "both"
+        },
+        {
+          "name": "Input 1",
+          "value": "input1"
+        },
+        {
+          "name": "Input 2",
+          "value": "input2"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "both",
+      "displayName": "Output Data From",
+      "displayOptions": {
+        "show": {
+          "combinationMode": [
+            "mergeByFields"
+          ],
+          "joinMode": [
+            "keepNonMatches"
+          ],
+          "mode": [
+            "combine"
+          ]
+        }
+      },
+      "name": "outputDataFrom",
+      "options": [
+        {
+          "name": "Both Inputs Appended Together",
+          "value": "both"
+        },
+        {
+          "name": "Input 1",
+          "value": "input1"
+        },
+        {
+          "name": "Input 2",
+          "value": "input2"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "waitForBoth",
+      "displayName": "Output Type",
+      "displayOptions": {
+        "show": {
+          "mode": [
+            "chooseBranch"
+          ]
+        }
+      },
+      "name": "chooseBranchMode",
+      "options": [
+        {
+          "name": "Wait for Both Inputs to Arrive",
+          "value": "waitForBoth"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": "input1",
+      "displayName": "Output",
+      "displayOptions": {
+        "show": {
+          "chooseBranchMode": [
+            "waitForBoth"
+          ],
+          "mode": [
+            "chooseBranch"
+          ]
+        }
+      },
+      "name": "output",
+      "options": [
+        {
+          "name": "Input 1 Data",
+          "value": "input1"
+        },
+        {
+          "name": "Input 2 Data",
+          "value": "input2"
+        },
+        {
+          "name": "A Single, Empty Item",
+          "value": "empty"
+        }
+      ],
+      "type": "options"
+    },
+    {
+      "default": {},
+      "displayName": "Options",
+      "displayOptions": {
+        "hide": {
+          "mode": [
+            "chooseBranch",
+            "append"
+          ]
+        }
+      },
+      "name": "options",
+      "options": [
+        {
+          "default": {
+            "values": {
+              "mergeMode": "deepMerge",
+              "overrideEmpty": false,
+              "resolveClash": "preferInput2"
+            }
+          },
+          "displayName": "Clash Handling",
+          "displayOptions": {
+            "hide": {
+              "/joinMode": [
+                "keepMatches",
+                "keepNonMatches"
+              ]
+            },
+            "show": {
+              "/combinationMode": [
+                "mergeByFields"
+              ],
+              "/mode": [
+                "combine"
+              ]
+            }
+          },
+          "name": "clashHandling",
+          "options": [
+            {
+              "displayName": "Values",
+              "name": "values",
+              "values": [
+                {
+                  "default": "",
+                  "displayName": "When Field Values Clash",
+                  "name": "resolveClash",
+                  "options": [
+                    {
+                      "name": "Always Add Input Number to Field Names",
+                      "value": "addSuffix"
+                    },
+                    {
+                      "name": "Prefer Input 1 Version",
+                      "value": "preferInput1"
+                    },
+                    {
+                      "name": "Prefer Input 2 Version",
+                      "value": "preferInput2"
+                    }
+                  ],
+                  "type": "options"
+                },
+                {
+                  "default": "deepMerge",
+                  "displayName": "Merging Nested Fields",
+                  "displayOptions": {
+                    "show": {
+                      "resolveClash": [
+                        "preferInput1",
+                        "preferInput2"
+                      ]
+                    }
+                  },
+                  "hint": "How to merge when there are sub-fields below the top-level ones",
+                  "name": "mergeMode",
+                  "options": [
+                    {
+                      "description": "Merge at every level of nesting",
+                      "name": "Deep Merge",
+                      "value": "deepMerge"
+                    },
+                    {
+                      "description": "Merge at the top level only (all nested fields will come from the same input)",
+                      "name": "Shallow Merge",
+                      "value": "shallowMerge"
+                    }
+                  ],
+                  "type": "options"
+                },
+                {
+                  "default": false,
+                  "description": "Whether to override the preferred input version for a field if it is empty and the other version isn't. Here 'empty' means undefined, null or an empty string.",
+                  "displayName": "Minimize Empty Fields",
+                  "displayOptions": {
+                    "show": {
+                      "resolveClash": [
+                        "preferInput1",
+                        "preferInput2"
+                      ]
+                    }
+                  },
+                  "name": "overrideEmpty",
+                  "type": "boolean"
+                }
+              ]
+            }
+          ],
+          "type": "fixedCollection"
+        },
+        {
+          "default": {
+            "values": {
+              "mergeMode": "deepMerge",
+              "overrideEmpty": false,
+              "resolveClash": "preferInput2"
+            }
+          },
+          "displayName": "Clash Handling",
+          "displayOptions": {
+            "show": {
+              "/combinationMode": [
+                "mergeByFields"
+              ],
+              "/joinMode": [
+                "keepMatches"
+              ],
+              "/mode": [
+                "combine"
+              ],
+              "/outputDataFrom": [
+                "both"
+              ]
+            }
+          },
+          "name": "clashHandling",
+          "options": [
+            {
+              "displayName": "Values",
+              "name": "values",
+              "values": [
+                {
+                  "default": "",
+                  "displayName": "When Field Values Clash",
+                  "name": "resolveClash",
+                  "options": [
+                    {
+                      "name": "Always Add Input Number to Field Names",
+                      "value": "addSuffix"
+                    },
+                    {
+                      "name": "Prefer Input 1 Version",
+                      "value": "preferInput1"
+                    },
+                    {
+                      "name": "Prefer Input 2 Version",
+                      "value": "preferInput2"
+                    }
+                  ],
+                  "type": "options"
+                },
+                {
+                  "default": "deepMerge",
+                  "displayName": "Merging Nested Fields",
+                  "displayOptions": {
+                    "show": {
+                      "resolveClash": [
+                        "preferInput1",
+                        "preferInput2"
+                      ]
+                    }
+                  },
+                  "hint": "How to merge when there are sub-fields below the top-level ones",
+                  "name": "mergeMode",
+                  "options": [
+                    {
+                      "description": "Merge at every level of nesting",
+                      "name": "Deep Merge",
+                      "value": "deepMerge"
+                    },
+                    {
+                      "description": "Merge at the top level only (all nested fields will come from the same input)",
+                      "name": "Shallow Merge",
+                      "value": "shallowMerge"
+                    }
+                  ],
+                  "type": "options"
+                },
+                {
+                  "default": false,
+                  "description": "Whether to override the preferred input version for a field if it is empty and the other version isn't. Here 'empty' means undefined, null or an empty string.",
+                  "displayName": "Minimize Empty Fields",
+                  "displayOptions": {
+                    "show": {
+                      "resolveClash": [
+                        "preferInput1",
+                        "preferInput2"
+                      ]
+                    }
+                  },
+                  "name": "overrideEmpty",
+                  "type": "boolean"
+                }
+              ]
+            }
+          ],
+          "type": "fixedCollection"
+        },
+        {
+          "default": {
+            "values": {
+              "mergeMode": "deepMerge",
+              "overrideEmpty": false,
+              "resolveClash": "preferInput2"
+            }
+          },
+          "displayName": "Clash Handling",
+          "displayOptions": {
+            "show": {
+              "/combinationMode": [
+                "multiplex",
+                "mergeByPosition"
+              ],
+              "/mode": [
+                "combine"
+              ]
+            }
+          },
+          "name": "clashHandling",
+          "options": [
+            {
+              "displayName": "Values",
+              "name": "values",
+              "values": [
+                {
+                  "default": "",
+                  "displayName": "When Field Values Clash",
+                  "name": "resolveClash",
+                  "options": [
+                    {
+                      "name": "Always Add Input Number to Field Names",
+                      "value": "addSuffix"
+                    },
+                    {
+                      "name": "Prefer Input 1 Version",
+                      "value": "preferInput1"
+                    },
+                    {
+                      "name": "Prefer Input 2 Version",
+                      "value": "preferInput2"
+                    }
+                  ],
+                  "type": "options"
+                },
+                {
+                  "default": "deepMerge",
+                  "displayName": "Merging Nested Fields",
+                  "displayOptions": {
+                    "show": {
+                      "resolveClash": [
+                        "preferInput1",
+                        "preferInput2"
+                      ]
+                    }
+                  },
+                  "hint": "How to merge when there are sub-fields below the top-level ones",
+                  "name": "mergeMode",
+                  "options": [
+                    {
+                      "description": "Merge at every level of nesting",
+                      "name": "Deep Merge",
+                      "value": "deepMerge"
+                    },
+                    {
+                      "description": "Merge at the top level only (all nested fields will come from the same input)",
+                      "name": "Shallow Merge",
+                      "value": "shallowMerge"
+                    }
+                  ],
+                  "type": "options"
+                },
+                {
+                  "default": false,
+                  "description": "Whether to override the preferred input version for a field if it is empty and the other version isn't. Here 'empty' means undefined, null or an empty string.",
+                  "displayName": "Minimize Empty Fields",
+                  "displayOptions": {
+                    "show": {
+                      "resolveClash": [
+                        "preferInput1",
+                        "preferInput2"
+                      ]
+                    }
+                  },
+                  "name": "overrideEmpty",
+                  "type": "boolean"
+                }
+              ]
+            }
+          ],
+          "type": "fixedCollection"
+        },
+        {
+          "default": false,
+          "description": "Whether to disallow referencing child fields using `parent.child` in the field name",
+          "displayName": "Disable Dot Notation",
+          "displayOptions": {
+            "show": {
+              "/combinationMode": [
+                "mergeByFields"
+              ],
+              "/mode": [
+                "combine"
+              ]
+            }
+          },
+          "name": "disableDotNotation",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "Whether to tolerate small type differences when comparing fields. E.g. the number 3 and the string '3' are treated as the same.",
+          "displayName": "Fuzzy Compare",
+          "name": "fuzzyCompare",
+          "type": "boolean"
+        },
+        {
+          "default": false,
+          "description": "If there are different numbers of items in input 1 and input 2, whether to include the ones at the end with nothing to pair with",
+          "displayName": "Include Any Unpaired Items",
+          "displayOptions": {
+            "show": {
+              "/combinationMode": [
+                "mergeByPosition"
+              ],
+              "/mode": [
+                "combine"
+              ]
+            }
+          },
+          "name": "includeUnpaired",
+          "type": "boolean"
+        },
+        {
+          "default": "all",
+          "displayName": "Multiple Matches",
+          "displayOptions": {
+            "show": {
+              "/combinationMode": [
+                "mergeByFields"
+              ],
+              "/joinMode": [
+                "keepMatches"
+              ],
+              "/mode": [
+                "combine"
+              ],
+              "/outputDataFrom": [
+                "both"
+              ]
+            }
+          },
+          "name": "multipleMatches",
+          "options": [
+            {
+              "description": "Output multiple items if there are multiple matches",
+              "name": "Include All Matches",
+              "value": "all"
+            },
+            {
+              "description": "Only ever output a single item per match",
+              "name": "Include First Match Only",
+              "value": "first"
+            }
+          ],
+          "type": "options"
+        },
+        {
+          "default": "all",
+          "displayName": "Multiple Matches",
+          "displayOptions": {
+            "show": {
+              "/combinationMode": [
+                "mergeByFields"
+              ],
+              "/joinMode": [
+                "enrichInput1",
+                "enrichInput2",
+                "keepEverything"
+              ],
+              "/mode": [
+                "combine"
+              ]
+            }
+          },
+          "name": "multipleMatches",
+          "options": [
+            {
+              "description": "Output multiple items if there are multiple matches",
+              "name": "Include All Matches",
+              "value": "all"
+            },
+            {
+              "description": "Only ever output a single item per match",
+              "name": "Include First Match Only",
+              "value": "first"
+            }
+          ],
+          "type": "options"
+        }
+      ],
+      "placeholder": "Add Option",
+      "type": "collection"
+    }
+  ],
+  "requiredInputs": "={{ $parameter[\"mode\"] === \"chooseBranch\" ? [0, 1] : 1 }}",
+  "subtitle": "={{$parameter[\"mode\"]}}",
+  "version": [
+    2,
+    2.1,
+    2.2
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "parameters": {
+    "limit": 10,
+    "operation": "getAll",
+    "options": {
+      "conditionsUi": {
+        "conditionValues": [
+          {
+            "field": "Name",
+            "value": "Suger Test For GetAll Complex"
+          },
+          {
+            "field": "AnnualRevenue",
+            "operation": "\u003e",
+            "value": "10000"
+          }
+        ]
+      }
+    },
+    "resource": "account"
+  }
+}
