@@ -224,6 +224,43 @@ func (service *WorkflowService) HandleWebhook(ctx *fiber.Ctx) error {
 	}
 }
 
+func (service *WorkflowService) GetFromTrigger(ctx *fiber.Ctx) error {
+	orgId := ctx.Params("orgId")
+	workflowId := ctx.Params("workflowId")
+	if orgId == "" || workflowId == "" {
+		return HandleBadRequestErrorWithTrace(ctx, fmt.Errorf("orgId or workflowId is empty"))
+	}
+
+	workflowEntity, err := core.GetWorkflowEntity(ctx.UserContext(), orgId, workflowId)
+	if err != nil {
+		return HandleInternalServerErrorWithTrace(ctx, err)
+	}
+
+	err = fmt.Errorf("no such form data")
+	if len(workflowEntity.Nodes) == 0 {
+		return HandleInternalServerErrorWithTrace(ctx, err)
+	}
+
+	if len(workflowEntity.Nodes[0].Parameters) == 0 {
+		return HandleInternalServerErrorWithTrace(ctx, err)
+	}
+
+	//response := structs.GetWorkflowFromResponse{
+	//	Parameters: workflowEntity.Nodes[0].Parameters,
+	//}
+
+	response := map[string]interface{}{
+		"parameters": workflowEntity.Nodes[0].Parameters,
+	}
+
+	return ctx.Status(fiber.StatusOK).JSON(response)
+}
+
+func (service *WorkflowService) SaveFromTriggerData(ctx *fiber.Ctx) error {
+
+	return nil
+}
+
 // https://github.com/sugerio/workflow-service/blob/c1b5d949658247b19abfdb598cf4b427089cb099/packages/cli/src/WebhookHelpers.ts#L668
 func sendResponseUsingLastNodeResult(
 	ctx *fiber.Ctx,
@@ -354,4 +391,9 @@ func getDataLastExecutedNodeData(
 
 func (service *WorkflowService) RegisterRouteMethods_Webhook() {
 	service.fiberApp.All("/workflow/public/webhook/workflow/:workflowId/node/:nodeId", service.HandleWebhook)
+
+	formTriggerApi := service.fiberApp.Group("/workflow/public/form")
+	formTriggerApi.Get("/:orgId/:workflowId", service.GetFromTrigger)
+	formTriggerApi.Post("/:workflowId/form_trigger/:nodeId", service.SaveFromTriggerData)
+
 }

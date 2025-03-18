@@ -1,0 +1,62 @@
+{
+	"id": "",
+	"name": "New Workflow",
+	"active": false,
+	"nodes": [{
+		"id": "e2114260-a9f1-4e35-b1fe-8c491d35dcaa",
+		"name": "Form Trigger",
+		"typeVersion": 1.1,
+		"type": "n8n-nodes-base.formTrigger",
+		"position": [420, 280],
+		"parameters": {
+			"path": "e5427436-0460-4fb7-baa3-f8ee2a2b7d92",
+			"formTitle": "Contact Us Now Customize",
+			"formDescription": "We'll get back to you soon",
+			"formFields": {
+				"values": [{
+						"fieldLabel": "Name",
+						"requiredField": true
+					},
+					{
+						"fieldLabel": "Email",
+						"fieldType": "email",
+						"requiredField": true
+					},
+					{
+						"fieldLabel": "Address",
+						"requiredField": true
+					},
+					{
+						"fieldLabel": "Hobby",
+						"fieldType": "dropdown",
+						"fieldOptions": {
+							"values": [{
+									"option": "basketball"
+								},
+								{
+									"option": "soccer"
+								}
+							]
+						},
+						"requiredField": true
+					}
+				]
+			},
+			"options": {}
+		}
+	}],
+	"connections": {
+		"Form Trigger": {
+			"main": [
+				[{
+					"node": "Code",
+					"type": "main",
+					"index": 0
+				}]
+			]
+		}
+	},
+	"settings": {
+		"executionOrder": "v1"
+	}
+}

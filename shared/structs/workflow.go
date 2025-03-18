@@ -1405,3 +1405,28 @@ type WorkflowWebhook struct {
 	NodeId     string `json:"nodeId,omitempty"`
 	WebhookId  string `json:"webhookId,omitempty"`
 } //@name WorkflowWebhook
+
+type WorkflowFrom struct {
+	Path            string `json:"path"`
+	FormTitle       string `json:"formTitle"`
+	FormDescription string `json:"formDescription"`
+	FormFields      struct {
+		Values []WorkflowFromFields `json:"values"`
+	} `json:"formFields"`
+	Options map[string]interface{} `json:"options"`
+} //@name WorkflowFrom
+
+// link https://github.com/n8n-io/n8n/blob/7e1036187ff7bd5be990f191a3ac8ef002e7812a/packages/workflow/src/Interfaces.ts#L2641
+type WorkflowFromFields struct {
+	FieldLabel    string `json:"fieldLabel"`
+	FieldType     string `json:"fieldType"`
+	RequiredField bool   `json:"requiredField,omitempty"`
+	FieldOptions  struct {
+		Values []struct {
+			Option string `json:"option"`
+		} `json:"values,omitempty"`
+	} `json:"fieldOptions,omitempty"`
+} //@name WorkflowFromFields
+type GetWorkflowFromResponse struct {
+	Parameters *WorkflowFrom `json:"parameters"`
+} //@name GetWorkflowResponse
