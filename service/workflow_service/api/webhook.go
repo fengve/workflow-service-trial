@@ -460,6 +460,6 @@ func (service *WorkflowService) RegisterRouteMethods_Webhook() {
 
 	formTriggerApi := service.fiberApp.Group("/workflow/public/form")
 	formTriggerApi.Get("/:orgId/:workflowId/:nodeId", service.GetFromTrigger)
-	formTriggerApi.Post("/:orgId/:workflowId", service.StartFromTriggerData)
+	formTriggerApi.Post("/:orgId/:workflowId/:nodeId", service.StartFromTriggerData)
 
 }
