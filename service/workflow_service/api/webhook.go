@@ -66,6 +66,7 @@ func (service *WorkflowService) HandleWebhook(ctx *fiber.Ctx) error {
 	if webhookNode == nil {
 		return HandleNotFoundErrorWithTrace(ctx, errors.New("no such webhook node in the workflow"))
 	}
+
 	if webhookNode.WebhookId != webhookId {
 		return HandleBadRequestErrorWithTrace(
 			ctx, errors.New("the webhookId is not associated with the nodeId"))
@@ -227,8 +228,10 @@ func (service *WorkflowService) HandleWebhook(ctx *fiber.Ctx) error {
 func (service *WorkflowService) GetFromTrigger(ctx *fiber.Ctx) error {
 	orgId := ctx.Params("orgId")
 	workflowId := ctx.Params("workflowId")
-	if orgId == "" || workflowId == "" {
-		return HandleBadRequestErrorWithTrace(ctx, fmt.Errorf("orgId or workflowId is empty"))
+	nodeId := ctx.Params("nodeId")
+
+	if orgId == "" || workflowId == "" || nodeId == "" {
+		return HandleBadRequestErrorWithTrace(ctx, fmt.Errorf("orgId or workflowId or nodeId is empty"))
 	}
 
 	workflowEntity, err := core.GetWorkflowEntity(ctx.UserContext(), orgId, workflowId)
@@ -236,13 +239,26 @@ func (service *WorkflowService) GetFromTrigger(ctx *fiber.Ctx) error {
 		return HandleInternalServerErrorWithTrace(ctx, err)
 	}
 
-	err = fmt.Errorf("no such form data")
+	err = fmt.Errorf("no such form trigger")
 	if len(workflowEntity.Nodes) == 0 {
 		return HandleInternalServerErrorWithTrace(ctx, err)
 	}
 
-	if len(workflowEntity.Nodes[0].Parameters) == 0 {
+	var fromTriggerNode *structs.WorkflowNode
+	var found bool
+	for idx, node := range workflowEntity.Nodes {
+		if node.ID == nodeId {
+			found = true
+			fromTriggerNode = &workflowEntity.Nodes[idx]
+		}
+	}
+
+	if !found {
 		return HandleInternalServerErrorWithTrace(ctx, err)
+	}
+
+	if len(fromTriggerNode.Parameters) == 0 {
+		return HandleInternalServerErrorWithTrace(ctx, fmt.Errorf("form trigger parameter is empty"))
 	}
 
 	//response := structs.GetWorkflowFromResponse{
@@ -250,15 +266,65 @@ func (service *WorkflowService) GetFromTrigger(ctx *fiber.Ctx) error {
 	//}
 
 	response := map[string]interface{}{
-		"parameters": workflowEntity.Nodes[0].Parameters,
+		"parameters": fromTriggerNode.Parameters,
 	}
 
 	return ctx.Status(fiber.StatusOK).JSON(response)
 }
 
-func (service *WorkflowService) SaveFromTriggerData(ctx *fiber.Ctx) error {
+func (service *WorkflowService) StartFromTriggerData(ctx *fiber.Ctx) error {
 
-	return nil
+	orgId := ctx.Params("orgId")
+	workflowId := ctx.Params("workflowId")
+	nodeId := ctx.Params("nodeId")
+
+	if orgId == "" || workflowId == "" || nodeId == "" {
+		return HandleBadRequestErrorWithTrace(ctx, fmt.Errorf("orgId or workflowId or nodeId is empty"))
+	}
+
+	params := map[string]interface{}{}
+	if err := ctx.BodyParser(&params); err != nil {
+		return HandleBadRequestErrorWithTrace(ctx, err)
+	}
+
+	// Get the workflow entity
+	workflowEntity, err := core.GetWorkflowEntity(ctx.UserContext(), orgId, workflowId)
+	if err != nil {
+		return HandleInternalServerErrorWithTrace(ctx, err)
+	}
+
+	// Check form data
+	node := workflowEntity.GetNodeById(nodeId)
+	if err = core.CheckFormTriggerParam(params, node); err != nil {
+		return HandleInternalServerErrorWithTrace(ctx, err)
+	}
+
+	// Find webhook node
+	webhookNode := workflowEntity.GetNodeById(nodeId)
+	if webhookNode == nil {
+		return HandleNotFoundErrorWithTrace(ctx, errors.New("no such webhook node in the workflow"))
+	}
+
+	ctx2 := ctx.UserContext()
+	// create WorkflowExecute
+	additionalData, _, err := core.GetAdditionalDataWithHooks(
+		ctx2, structs.WorkflowExecutionMode_Trigger, workflowEntity, "")
+	if err != nil {
+		return HandleNotFoundErrorWithTrace(ctx, fmt.Errorf("Runner flow: workflowId %s create WorkflowExecute failed with err", workflowEntity.ID, err))
+	}
+
+	_, _, err = core.RunWorkflow(ctx2, "",
+		workflowEntity,
+		additionalData,
+		structs.WorkflowExecutionMode_Trigger,
+		webhookNode)
+
+	if err != nil {
+		return HandleInternalServerErrorWithTrace(ctx, err)
+	}
+
+	return ctx.Status(fiber.StatusOK).SendString("")
+
 }
 
 // https://github.com/sugerio/workflow-service/blob/c1b5d949658247b19abfdb598cf4b427089cb099/packages/cli/src/WebhookHelpers.ts#L668
@@ -393,7 +459,7 @@ func (service *WorkflowService) RegisterRouteMethods_Webhook() {
 	service.fiberApp.All("/workflow/public/webhook/workflow/:workflowId/node/:nodeId", service.HandleWebhook)
 
 	formTriggerApi := service.fiberApp.Group("/workflow/public/form")
-	formTriggerApi.Get("/:orgId/:workflowId", service.GetFromTrigger)
-	formTriggerApi.Post("/:workflowId/form_trigger/:nodeId", service.SaveFromTriggerData)
+	formTriggerApi.Get("/:orgId/:workflowId/:nodeId", service.GetFromTrigger)
+	formTriggerApi.Post("/:orgId/:workflowId", service.StartFromTriggerData)
 
 }

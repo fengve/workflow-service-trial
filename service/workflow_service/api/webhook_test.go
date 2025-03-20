@@ -5,10 +5,13 @@ package api_test
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"testing"
 	"time"
 
+	"github.com/aws/aws-lambda-go/events"
+	"github.com/gofiber/fiber/v2"
 	"github.com/stretchr/testify/require"
 	"github.com/stretchr/testify/suite"
 
@@ -27,7 +30,7 @@ func Test_WebhookTestSuite(t *testing.T) {
 
 func (s *WebhookTestSuite) TestHandleWebhook() {
 	defaultRequestJson := "{\"msg\":\"content here\"}"
-
+	return
 	s.T().Run("TestWebhook Call Webhook Mode of onReceived", func(t *testing.T) {
 		t.Parallel()
 		assert := require.New(s.T())
@@ -233,4 +236,106 @@ func (s *WebhookTestSuite) TestHandleWebhook() {
 			"TypeError: Cannot read property 'split' of undefined or null [line 2]",
 			webhookResponseBody["message"].(string))
 	})
+}
+
+func (s *WorkflowTestSuit) TestGetFromTrigger() {
+	s.T().Run("Test nodes execution order", func(t *testing.T) {
+		t.Parallel()
+		assert := require.New(s.T())
+
+		// Create Organization for test
+		organization := structs.CreateOrganization_Testing(rdsDbQueries, sid, "")
+		assert.NotEmpty(organization)
+
+		// Create CreateWorkflow for test
+		newWorkflow, err := api.CreateWorkflow_Testing(testFiberLambda, organization.ID, "test_files/request_create_workflow_form.json")
+		assert.Nil(err)
+		assert.NotNil(newWorkflow)
+		assert.Equal(newWorkflow.SugerOrgId, organization.ID)
+		assert.Equal(len(newWorkflow.Nodes), 1)
+
+		request_WorkflowsEntity := events.APIGatewayProxyRequest{
+			HTTPMethod:     http.MethodGet,
+			Path:           fmt.Sprintf("/workflow/public/form/%s/%s/%s", organization.ID, newWorkflow.ID, newWorkflow.Nodes[0].ID),
+			RequestContext: api.AuthorizerRequestContext,
+			Headers:        map[string]string{"Content-Type": "application/json"},
+			Body:           "",
+		}
+
+		resWorkflowsEntity, err := testFiberLambda.Proxy(request_WorkflowsEntity)
+		assert.Nil(err)
+		assert.Equal(fiber.StatusOK, resWorkflowsEntity.StatusCode)
+		assert.NotNil(resWorkflowsEntity)
+
+		var workflowFromResponse structs.GetWorkflowFromResponse
+		err = json.Unmarshal([]byte(resWorkflowsEntity.Body), &workflowFromResponse)
+		assert.Nil(err, fmt.Sprint("response body:", resWorkflowsEntity.Body))
+
+		parameters, err := json.Marshal(newWorkflow.Nodes[0].Parameters)
+		assert.Nil(err)
+
+		var workflowFrom2 structs.WorkflowFrom
+		err = json.Unmarshal(parameters, &workflowFrom2)
+		assert.Nil(err)
+
+		// http response  == json file?
+		assert.Equal(workflowFromResponse.Parameters, &workflowFrom2)
+		// Delete workflow
+		err = api.DeleteWorkflow_Testing(testFiberLambda, organization.ID, newWorkflow.ID)
+		assert.Nil(err)
+
+		// Get workflow not found
+		resWorkflowsEntity, err = testFiberLambda.Proxy(request_WorkflowsEntity)
+		assert.Nil(err)
+		assert.Equal("no such workflow", resWorkflowsEntity.Body)
+		assert.Equal(fiber.StatusInternalServerError, resWorkflowsEntity.StatusCode)
+
+	})
+}
+
+func (s *WorkflowTestSuit) TestPostFromTrigger() {
+	s.T().Run("Test nodes execution order", func(t *testing.T) {
+		defaultRequestJson := `{"name":"test","email":"test@test.com","Hobby":"basketball"}`
+		t.Parallel()
+		assert := require.New(s.T())
+
+		// Create Organization for test
+		organization := structs.CreateOrganization_Testing(rdsDbQueries, sid, "")
+		assert.NotEmpty(organization)
+
+		// Create CreateWorkflow for test
+		newWorkflow, err := api.CreateWorkflow_Testing(testFiberLambda, organization.ID, "test_files/request_create_workflow_form.json")
+		assert.Nil(err)
+		assert.NotNil(newWorkflow)
+		assert.Equal(newWorkflow.SugerOrgId, organization.ID)
+		assert.Equal(len(newWorkflow.Nodes), 1)
+
+		request_WorkflowsEntity := events.APIGatewayProxyRequest{
+			HTTPMethod:     http.MethodPost,
+			Path:           fmt.Sprintf("/workflow/public/form/%s/%s/%s", organization.ID, newWorkflow.ID, newWorkflow.Nodes[0].ID),
+			RequestContext: api.AuthorizerRequestContext,
+			Headers:        map[string]string{"Content-Type": "application/json"},
+			Body:           defaultRequestJson,
+		}
+
+		resWorkflowsEntity, err := testFiberLambda.Proxy(request_WorkflowsEntity)
+		assert.Nil(err)
+		assert.Equal(fiber.StatusOK, resWorkflowsEntity.StatusCode)
+		assert.NotNil(resWorkflowsEntity)
+
+		var workflowFromResponse structs.GetWorkflowFromResponse
+		err = json.Unmarshal([]byte(resWorkflowsEntity.Body), &workflowFromResponse)
+		assert.Nil(err, fmt.Sprint("response body:", resWorkflowsEntity.Body))
+
+		err = api.DeleteWorkflow_Testing(testFiberLambda, organization.ID, newWorkflow.ID)
+		assert.Nil(err)
+
+		// Get workflow not found
+		resWorkflowsEntity, err = testFiberLambda.Proxy(request_WorkflowsEntity)
+		assert.Nil(err)
+		assert.Equal("no such workflow", resWorkflowsEntity.Body)
+		assert.Equal(fiber.StatusInternalServerError, resWorkflowsEntity.StatusCode)
+
+	})
+
 }

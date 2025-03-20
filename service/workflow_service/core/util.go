@@ -11,6 +11,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/pkg/errors"
 	"github.com/sugerio/workflow-service-trial/shared/structs"
 )
 
@@ -326,4 +327,45 @@ func GetDataFromBinaryData(binaryData *structs.WorkflowBinaryData) (string, erro
 	}
 
 	return string(decoded), nil
+}
+
+func CheckDataType(typ string, val interface{}) bool {
+	// TODO:
+	switch typ {
+	case "email":
+	case "number":
+		//....
+	}
+
+	return true
+}
+func CheckFormTriggerParam(params map[string]interface{}, node *structs.WorkflowNode) error {
+	parameters, err := json.Marshal(params)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	var workflowFrom structs.WorkflowFrom
+	err = json.Unmarshal(parameters, &workflowFrom)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	for _, field := range workflowFrom.FormFields.Values {
+
+		val, ok := params[field.FieldLabel]
+		if field.RequiredField && !ok {
+			return errors.Errorf("%s is empty", field.FieldLabel)
+		}
+
+		if !ok {
+			continue
+		}
+
+		if !CheckDataType(field.FieldLabel, val) {
+			return errors.Errorf("%s invalid value", field.FieldLabel)
+		}
+	}
+
+	return nil
 }

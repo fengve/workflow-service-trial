@@ -1,12 +1,12 @@
 package form_trigger
 
 import (
+	"bytes"
 	"context"
 	_ "embed"
 
 	"github.com/sugerio/workflow-service-trial/service/workflow_service/core"
 	"github.com/sugerio/workflow-service-trial/shared/structs"
-	"github.com/valyala/fasthttp"
 )
 
 const (
@@ -60,25 +60,22 @@ func (ft *FormTrigger) DefaultSpec() interface{} {
 }
 
 func (ft *FormTrigger) Execute(ctx context.Context, input *structs.NodeExecuteInput) *structs.NodeExecutionResult {
+
 	request := input.AdditionalData.HttpRequest
-	returnItem := ft.generateOutput(request)
+
+	node := input.Params
+	if bytes.Equal(request.Header.Method(), []byte("GET")) {
+		return core.GenerateSuccessResponse(structs.NodeData{
+			{
+				"parameters": node.Parameters,
+			},
+		}, []structs.NodeData{})
+	}
+
+	// POST
 	return core.GenerateSuccessResponse(structs.NodeData{
 		{
-			"json": returnItem,
+			"parameters": node.Parameters,
 		},
 	}, []structs.NodeData{})
-}
-
-func (ft *FormTrigger) generateOutput(request *fasthttp.Request) formTriggerOutput {
-	headers := make(map[string]string)
-	request.Header.VisitAll(func(key, value []byte) {
-		headers[string(key)] = string(value)
-	})
-
-	params := make(map[string]string)
-	request.URI().QueryArgs().VisitAll(func(key, value []byte) {
-		params[string(key)] = string(value)
-	})
-
-	return formTriggerOutput{}
 }
